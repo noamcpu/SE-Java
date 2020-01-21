@@ -80,10 +80,7 @@ public class Render {
      * @param ray
      * @return
      */
-    private List<GeoPoint> getClosestIntersection(Ray ray) {
-	List<GeoPoint> intersectionPoints = _scene.get_geometries().findIntersections(ray);
-	return intersectionPoints;
-    }
+   
 
 	
 	/**
