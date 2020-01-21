@@ -121,7 +121,7 @@ public class Point3D {
 	 * @param obj The point you get
 	 * @return add vector
 	 */
-	public GeoPoint addition(Vector a) {
+	public Point3D addition(Vector a) {
 		Point3D b = new Point3D(this.getX().add(a.getHead().getX()).get(), this.getY().add(a.getHead().getY()).get(),
 				this.getZ().add(a.getHead().getZ()).get());
 		return b;

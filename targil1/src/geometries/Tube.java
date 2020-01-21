@@ -2,6 +2,7 @@ package geometries;
 
 import java.util.List;
 
+import geometries.Intersectable.GeoPoint;
 import primitives.*;
 
 /**
@@ -61,7 +62,7 @@ public class Tube extends RadialGeometry {
 		return p.sub(o).normalization();
 	}
 
-	public List<Point3D> findIntersections(Ray r) {
+	public List<GeoPoint> findIntersections(Ray r) {
 		// TODO Auto-generated method stub
 		return null;
 	}
