@@ -23,7 +23,7 @@ public class Render {
 	 */
 	public Render(ImageWriter _imageWriter, Scene _scene) {
 		this._imageWriter = _imageWriter;
-		this._scene = _scene;
+		this._scene = scene;
 	}
 
 	// *****************Getters/Setters******************//
