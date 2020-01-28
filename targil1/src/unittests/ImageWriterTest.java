@@ -16,7 +16,7 @@ public class ImageWriterTest {
 		for (int i = 0; i < image.getNx(); i++) {
 			for (int j = 0; j < image.getNy(); j++)
 				if (i % 50 == 0 || j % 50 == 0)
-					image.writePixel(j, i, Color.green);
+					image.writePixel(j, i, Color.blue);
 		}
 		image.writeToimage();
 	}

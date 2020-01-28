@@ -48,6 +48,17 @@ public class Plane extends Geometry {
         setEmission(emission);
     }
 
+    /**
+     * Constructs a plane with a point, normal vector and a color
+     *
+     * @param emission the color of the plane
+     * @param _p,      the base point of the normal
+     * @param _normal, the normal vector to the plane
+     */
+    public Plane(Color emission, Point3D _p, Vector _normal) {
+        this(_normal, _p);
+        setEmission(emission);
+    }
 	// ***************** Getters ********************** //
 
 	/**
@@ -98,8 +109,6 @@ public class Plane extends Geometry {
 		Vector v = ray.getDirection();
 
 		double s = alignZero(this._normal.dotProduct(v));
-		// if the ray is ray in parallel to the plane (orthogonal to the normal) return
-		// null
 		if (s == 0)
 			return null;
 
@@ -107,12 +116,11 @@ public class Plane extends Geometry {
 		try {
 			pp0 = this._p.sub(p0);
 		} catch (Exception e) {
-			// if the ray's base is equal to the origin point of the plane return null
+	
 			return null;
 		}
 
 		double t = alignZero(this._normal.dotProduct(pp0) / s);
-		// if the plane is behind the ray, or the ray's base is on the plane return null
-		return (t <= 0) ? null : Arrays.asList(new GeoPoint(this, p0.addition(v.scaling(t)))); // return the intersection
+		return (t <= 0) ? null : Arrays.asList(new GeoPoint(this, p0.addition(v.scaling(t)))); 
 	}
 }

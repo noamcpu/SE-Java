@@ -58,7 +58,7 @@ public class IntegrationTest {
 		assertEquals(10, countIntersections(sphere), 0);
 
 		// sphere fourth test case - 9 intersection points
-		sphere = new Sphere(, 5, new Point3D(0, 0, -1));
+		sphere = new Sphere( 5, new Point3D(0, 0, -1));
 		assertEquals(9, countIntersections(sphere), 0);
 
 		// sphere fifth test case - 0 intersection points

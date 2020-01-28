@@ -7,10 +7,10 @@ import static primitives.Util.*;
  */
 
 public class Camera {
-	protected Point3D _p0;
-	protected Vector _vUp;
-	protected Vector _vTo;
-	protected Vector _vRight;
+	Point3D _p0;
+	Vector _vUp;
+	Vector _vTo;
+	Vector _vRight;
 
 // ***************** Constructors ********************** //
 	/**

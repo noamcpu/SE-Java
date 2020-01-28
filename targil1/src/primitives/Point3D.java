@@ -2,7 +2,6 @@ package primitives;
 
 import java.lang.Math;
 
-import geometries.Intersectable.GeoPoint;
 import primitives.Coordinate;
 import primitives.Vector;
 
@@ -42,6 +41,15 @@ public class Point3D {
 		z = new Coordinate(other.z);
 	}
 
+	/**
+	 * Construct three decimal numbers.
+	 *
+	 * @param x coordinate by decimal number.
+	 *
+	 * @param y coordinate by decimal number.
+	 *
+	 * @param z coordinate by decimal number.
+	 */
 	public Point3D(double x, double y, double z) {
 		this.x = new Coordinate(x);
 		this.y = new Coordinate(y);
@@ -128,8 +136,7 @@ public class Point3D {
 	}
 
 	/**
-	 * /** getting point 3D and calculate the distance squared between the given
-	 * point
+	 * getting point 3D and calculate the distance squared between the given point
 	 * 
 	 * @param obj The point you get
 	 * @return distance squared

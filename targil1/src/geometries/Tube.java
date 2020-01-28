@@ -50,9 +50,8 @@ public class Tube extends RadialGeometry {
 	public Vector getNormal(Point3D p) {
 		Point3D p0 = _axisRay.getP();
 		Vector v = _axisRay.getDirection();
-		Vector u = p.sub(p0); // vector from p0 to p
-		double t = v.dotProduct(u); // size of projection of vector u on the ray
-		// point on the ray and plane crossing P and orthogonal to the ray
+		Vector u = p.sub(p0); 
+		double t = v.dotProduct(u); 
 		Point3D o;
 		if (t == 0)
 			o = p0;

@@ -18,10 +18,11 @@ public interface Intersectable {
         public GeoPoint(Geometry geometry, Point3D point) {
             this.point = point;
             this.geometry = geometry;
+            
         }
         // ***************** Getters/Setters ********************** //
 
-        /**
+		/**
          * getter of the point
          *
          * @return the point

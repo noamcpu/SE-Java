@@ -4,10 +4,13 @@ import primitives.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import geometries.Intersectable.GeoPoint;
+
 import java.lang.Math;
 import static primitives.Util.*;
 
-public class Sphere extends RadialGeometry implements Intersectable {
+public class Sphere extends RadialGeometry {
 	Point3D _center;
 	
 	// ***************** Constructors ********************** //
@@ -22,6 +25,17 @@ public class Sphere extends RadialGeometry implements Intersectable {
 		super(_radius);
 		this._center = _center;
 	}
+	/**
+     * constructs a sphere with a radius, center point and a color
+     *
+     * @param emission the color of the sphere
+     * @param _radius, the radius of the sphere
+     * @param _center, the center point of the sphere
+     */
+    public Sphere(Color emission, double _radius, Point3D _center) {
+        this(_radius, _center);
+        setEmission(emission);
+    }
 
 	// ***************** Getters ********************** //
 	/**
@@ -81,9 +95,9 @@ public class Sphere extends RadialGeometry implements Intersectable {
 		if (t1 > 0 || t2 > 0) {
 			List<GeoPoint> intersections = new ArrayList<>();
 			if (t1 > 0)
-				intersections.add(p0.addition(v.scaling(t1)));
+				intersections.add(new GeoPoint(this, p0.addition(v.scaling(t1))));
 			if (t2 > 0)
-				intersections.add(p0.addition(v.scaling(t2)));
+				intersections.add(new GeoPoint(this,p0.addition(v.scaling(t2))));
 			return intersections;
 		}
 

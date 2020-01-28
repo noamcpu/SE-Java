@@ -3,8 +3,8 @@ package elements;
 
 import primitives.*;
 
-public class DirectionalLight extends Light  {
-	protected Vector direction;
+public class DirectionalLight extends Light implements LightSource  {
+	 Vector direction;
 	
 	// ***************** Constructors ********************** //
 
@@ -30,4 +30,5 @@ public class DirectionalLight extends Light  {
 	public Vector getL(Point3D p) {
 		return this.direction;
 	}
+
 }

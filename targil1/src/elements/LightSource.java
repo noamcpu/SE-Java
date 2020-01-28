@@ -12,7 +12,13 @@ public interface LightSource {
      * @return the color at the point
      */
 	public  Color getIntensity(Point3D p);
+	/**
+     * getter of vector between light position and point
+     *
+     * @param p - the point
+     * @return the distance
+     */
     public Vector getL(Point3D p);
-    public Vector getD(Point3D p);
+ 
 }
 

@@ -31,6 +31,16 @@ public abstract  class Geometry implements Intersectable {
    public Material getMaterial() {
        return material;
    }
+  /**
+   * setter of the material of the geometry
+   *
+   * @param kd        - diffusion attenuation coefficient
+   * @param ks        - specular attenuation coefficient
+   * @param shininess - shininess power
+   */
+  public void setMaterial(double kd, double ks, int shininess) {
+      this.material = new Material(kd, ks, shininess);
+  }
 	/**
 	 * Calculates vector orthogonal to the plane
 	 * 

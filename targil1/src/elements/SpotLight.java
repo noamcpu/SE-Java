@@ -18,7 +18,7 @@ public class SpotLight extends PointLight  implements LightSource {
      */
 	public SpotLight(Color _color, Point3D _position, double _Kc, double _Kl, double _Kq, Vector _direction) {
 		super(_color, _position, _Kc, _Kl, _Kq);
-		this._direction = _direction;
+		this._direction = _direction.normalize();
 	}
 
 	// *****************Getters/Setters******************//

@@ -4,7 +4,7 @@ import static primitives.Util.*;
 import primitives.Color;
 
 
-public abstract class RadialGeometry  {
+public abstract class RadialGeometry extends Geometry{
 
 	protected double _radius;
 

@@ -3,9 +3,9 @@ package elements;
 import primitives.*;
 
 public  class PointLight extends Light implements LightSource {
-	protected Point3D _position;
+	 Point3D _position;
 
-	protected double _Kc, _Kl, _Kq;
+	 double _Kc, _Kl, _Kq;
 
 	// ***************** Constructors ********************** //
 	/**
@@ -46,9 +46,4 @@ public  class PointLight extends Light implements LightSource {
 		return p.sub(_position).normalization();
 	}
 
-	@Override
-	public Vector getD(Point3D p) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }

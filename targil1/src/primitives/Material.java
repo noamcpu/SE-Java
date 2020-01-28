@@ -17,14 +17,27 @@ public class Material {
 	}
 
 	// ****************getters and setters******
+	/**
+	 * getter of diffusion attenuation coefficient
+	 *
+	 * @return diffusion attenuation coefficient
+	 */
 	public double get_Kd() {
 		return _Kd;
 	}
-
+	/**
+	 * getter of specular attenuation coefficient
+	 *
+	 * @return specular attenuation coefficient
+	 */
 	public double get_Ks() {
 		return _Ks;
 	}
-
+	/**
+	 * getter of shininess power
+	 *
+	 * @return shininess power
+	 */
 	public int get_nShininess() {
 		return _nShininess;
 	}

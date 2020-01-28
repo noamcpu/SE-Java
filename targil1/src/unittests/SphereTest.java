@@ -2,13 +2,15 @@ package unittests;
 
 import primitives.*;
 import geometries.*;
+import geometries.Intersectable.GeoPoint;
+
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
+import static geometries.Intersectable.GeoPoint;
 public class SphereTest {
 
 	/**
