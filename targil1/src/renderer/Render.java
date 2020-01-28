@@ -51,8 +51,6 @@ public class Render {
 			}
 	}
 
-	public static int MAX_CALC_COLOR_LEVEL = 10;
-
 	/**
 	 * calcColor that send to the recursive calcColor
 	 * 
