@@ -46,11 +46,11 @@ public class IntegrationTest {
 	@Test
 	public void SphereIntegrationTest() {
 		// sphere first test case - 2 intersection points
-		Sphere sphere = new Sphere( 1, new Point3D(0, 0, -3));
+		Sphere sphere = new Sphere(1, new Point3D(0, 0, -3));
 		assertEquals(2, countIntersections(sphere), 0);
 
 		// sphere second test case - 18 intersection points
-		sphere = new Sphere( 2.5, new Point3D(0, 0, -3));
+		sphere = new Sphere(2.5, new Point3D(0, 0, -3));
 		assertEquals(18, countIntersections(sphere), 0);
 
 		// sphere third test case - 10 intersection points
@@ -58,11 +58,11 @@ public class IntegrationTest {
 		assertEquals(10, countIntersections(sphere), 0);
 
 		// sphere fourth test case - 9 intersection points
-		sphere = new Sphere( 5, new Point3D(0, 0, -1));
+		sphere = new Sphere(5, new Point3D(0, 0, -1));
 		assertEquals(9, countIntersections(sphere), 0);
 
 		// sphere fifth test case - 0 intersection points
-		sphere = new Sphere( 1, new Point3D(0, 0, 1));
+		sphere = new Sphere(1, new Point3D(0, 0, 1));
 		assertEquals(0, countIntersections(sphere), 0);
 	}
 

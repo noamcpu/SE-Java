@@ -24,41 +24,43 @@ public class Plane extends Geometry {
 		_normal = n.normalize();
 		_p = v;
 	}
+
 	/**
-    * Constructs a plane using three points in the space
-    *
-    * @param p1 is first point
-    * @param p2 is second point
-    * @param p3 is third point
-    */
+	 * Constructs a plane using three points in the space
+	 *
+	 * @param p1 is first point
+	 * @param p2 is second point
+	 * @param p3 is third point
+	 */
 	public Plane(Point3D _p1, Point3D _p2, Point3D _p3) {
 		this._p = _p1;
 		this._normal = _p2.sub(_p1).crossProduct(_p3.sub(_p1)).normalization();
 	}
-	/**
-     * Constructs a plane using three points in the space and a color
-     *
-     * @param emission the color of the plane
-     * @param p1       is first point
-     * @param p2       is second point
-     * @param p3       is third point
-     */
-    public Plane(Color emission, Point3D p1, Point3D p2, Point3D p3) {
-        this(p1, p2, p3);
-        setEmission(emission);
-    }
 
-    /**
-     * Constructs a plane with a point, normal vector and a color
-     *
-     * @param emission the color of the plane
-     * @param _p,      the base point of the normal
-     * @param _normal, the normal vector to the plane
-     */
-    public Plane(Color emission, Point3D _p, Vector _normal) {
-        this(_normal, _p);
-        setEmission(emission);
-    }
+	/**
+	 * Constructs a plane using three points in the space and a color
+	 *
+	 * @param emission the color of the plane
+	 * @param p1       is first point
+	 * @param p2       is second point
+	 * @param p3       is third point
+	 */
+	public Plane(Color emission, Point3D p1, Point3D p2, Point3D p3) {
+		this(p1, p2, p3);
+		setEmission(emission);
+	}
+
+	/**
+	 * Constructs a plane with a point, normal vector and a color
+	 *
+	 * @param emission the color of the plane
+	 * @param _p,      the base point of the normal
+	 * @param _normal, the normal vector to the plane
+	 */
+	public Plane(Color emission, Point3D _p, Vector _normal) {
+		this(_normal, _p);
+		setEmission(emission);
+	}
 	// ***************** Getters ********************** //
 
 	/**
@@ -116,11 +118,11 @@ public class Plane extends Geometry {
 		try {
 			pp0 = this._p.sub(p0);
 		} catch (Exception e) {
-	
+
 			return null;
 		}
 
 		double t = alignZero(this._normal.dotProduct(pp0) / s);
-		return (t <= 0) ? null : Arrays.asList(new GeoPoint(this, p0.addition(v.scaling(t)))); 
+		return (t <= 0) ? null : Arrays.asList(new GeoPoint(this, p0.addition(v.scaling(t))));
 	}
 }

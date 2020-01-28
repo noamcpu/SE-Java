@@ -31,12 +31,12 @@ public class LightTest {
 		triangle1.setMaterial(0.5, 0.5, 300);
 		triangle2.setMaterial(0.5, 0.5, 300);
 		geometries.add(triangle1, triangle2);
-		Point3D pos = new Point3D(0, 5, 95);
+		Point3D p = new Point3D(0, 5, 95);
 		Color color = new Color(400, 200, 200);
 
 		ImageWriter imageWriter = new ImageWriter("triangle-point", 500, 500, 600, 600);
 		List<LightSource> lights = new ArrayList<LightSource>();
-		PointLight light1 = new PointLight(color, pos, 1, 0.004, 0.0004);
+		PointLight light1 = new PointLight(color, p, 1, 0.004, 0.0004);
 		lights.add(light1);
 		scene.setLights(lights);
 		Render render = new Render(imageWriter, scene);
@@ -45,7 +45,7 @@ public class LightTest {
 
 		imageWriter = new ImageWriter("triangle-spot", 500, 500, 600, 600);
 		lights.clear();
-		SpotLight light2 = new SpotLight(color, pos, 0.0000005, 1, 0.00005, new Vector(0, 1, 0));
+		SpotLight light2 = new SpotLight(color, p, 0.0000005, 1, 0.00005, new Vector(0, 1, 0));
 		lights.add(light2);
 		scene.setLights(lights);
 		render = new Render(imageWriter, scene);
@@ -105,4 +105,4 @@ public class LightTest {
 		render.writeToImage();
 	}
 
-	}
+}

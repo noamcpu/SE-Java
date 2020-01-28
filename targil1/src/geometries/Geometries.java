@@ -30,6 +30,7 @@ public class Geometries implements Intersectable {
 			shapes.add(geometries[i]);
 		}
 	}
+
 	public Geometries(List<Intersectable> intersectable) {
 
 		this.shapes = intersectable;

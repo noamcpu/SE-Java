@@ -1,11 +1,10 @@
 package elements;
 
-
 import primitives.*;
 
-public class DirectionalLight extends Light implements LightSource  {
-	 Vector direction;
-	
+public class DirectionalLight extends Light implements LightSource {
+	Vector direction;
+
 	// ***************** Constructors ********************** //
 
 	public DirectionalLight(Color intensity, Vector direction) {

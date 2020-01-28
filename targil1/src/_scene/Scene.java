@@ -28,8 +28,8 @@ public class Scene {
 	 * @param _camera
 	 * @param _distance
 	 */
-	public Scene(String _sceneName, Color _background, AmbientLight _ambietLight, Geometries _geometries, Camera _camera,
-			double _distance) {
+	public Scene(String _sceneName, Color _background, AmbientLight _ambietLight, Geometries _geometries,
+			Camera _camera, double _distance) {
 		this._sceneName = _sceneName;
 		this._background = _background;
 		this._ambietLight = _ambietLight;
@@ -37,11 +37,12 @@ public class Scene {
 		this._camera = _camera;
 		this._distance = _distance;
 	}
-	 /**
-     * creates an empty scene with a name
-     *
-     * @param name
-     */
+
+	/**
+	 * creates an empty scene with a name
+	 *
+	 * @param name
+	 */
 	public Scene(String name) {
 		this._sceneName = name;
 	}
@@ -49,108 +50,118 @@ public class Scene {
 	// ***************** Getters/Setters ********************** //
 
 	/**
-     * getter of lights in the scene
-     *
-     * @return lights
-     */
-    public List<LightSource> getLights() {
-        return _lights;
-    }
-    /**
-     * setter of the lights in the scene
-     *
-     * @param _lights
-     */
-    public void setLights(List<LightSource> _lights) {
-        this._lights = _lights;
-    }
+	 * getter of lights in the scene
+	 *
+	 * @return lights
+	 */
+	public List<LightSource> getLights() {
+		return _lights;
+	}
 
-   /**
-    * getter of the scene name
-    *
-    * @return sceneName
-    */
+	/**
+	 * setter of the lights in the scene
+	 *
+	 * @param _lights
+	 */
+	public void setLights(List<LightSource> _lights) {
+		this._lights = _lights;
+	}
+
+	/**
+	 * getter of the scene name
+	 *
+	 * @return sceneName
+	 */
 	public String getSceneName() {
 		return _sceneName;
 	}
-	 /**
-     * getter of the background color
-     *
-     * @return background
-     */
+
+	/**
+	 * getter of the background color
+	 *
+	 * @return background
+	 */
 	public Color get_background() {
 		return _background;
 	}
-	 /**
-     * setter of the background color
-     *
-     * @param background
-     */
+
+	/**
+	 * setter of the background color
+	 *
+	 * @param background
+	 */
 	public void set_background(Color _background) {
 		this._background = _background;
 	}
+
 	/**
-     * getter of the ambient light
-     *
-     * @return ambient
-     */
+	 * getter of the ambient light
+	 *
+	 * @return ambient
+	 */
 	public AmbientLight get_ambietLight() {
 		return _ambietLight;
 	}
 
-    /**
-     * setter of the ambient light
-     *
-     * @param ambient
-     */
+	/**
+	 * setter of the ambient light
+	 *
+	 * @param ambient
+	 */
 	public void set_ambietLight(AmbientLight _ambietLight) {
 		this._ambietLight = _ambietLight;
 	}
+
 	/**
-     * getter of geometries list
-     *
-     * @return geometries
-     */
+	 * getter of geometries list
+	 *
+	 * @return geometries
+	 */
 	public Geometries get_geometries() {
 		return _geometries;
 	}
+
 	/**
-     * setter of geometries list
-     *
-     * @return geometries
-     */
+	 * setter of geometries list
+	 *
+	 * @return geometries
+	 */
 	public void set_geometries(Geometries _geometries) {
 		this._geometries = _geometries;
 	}
-	 /**
-     * getter of camera
-     *
-     * @return camera
-     */
+
+	/**
+	 * getter of camera
+	 *
+	 * @return camera
+	 */
 	public Camera get_camera() {
 		return _camera;
 	}
+
 	/**
-     * setter of camera
-     *
-     * @param camera
-     */
+	 * setter of camera
+	 *
+	 * @param camera
+	 */
 	public void set_camera(Camera _camera) {
 		this._camera = _camera;
 	}
-	 /**
-     * getter of distance
-     *
-     * @return distance
-     */
+
+	/**
+	 * getter of distance
+	 *
+	 * @return distance
+	 */
 	public double get_distance() {
 		return _distance;
 	}
-	 /**
-     * setter of distance
-     *
-     * @param distance
-     */
+
+	/**
+	 * setter of distance
+	 *
+	 * @param distance
+	 */
 	public void set_distance(double _distance) {
 		this._distance = _distance;
 	}
@@ -186,22 +197,22 @@ public class Scene {
 		_ambietLight = amb;
 	}
 
-	 /**
-     * adds shapes to the 3D model
-     *
-     * @param shapes
-     */
-    public void addIntersectable(Intersectable... shapes) {
-        _geometries.add(shapes);
-    }
+	/**
+	 * adds shapes to the 3D model
+	 *
+	 * @param shapes
+	 */
+	public void addIntersectable(Intersectable... shapes) {
+		_geometries.add(shapes);
+	}
 
-    /**
-     * adds lights to the scene
-     *
-     * @param lights
-     */
-    public void addLight(LightSource... lights) {
-        for (int i = 0; i < lights.length; ++i)
-            _lights.add(lights[i]);
-    }
+	/**
+	 * adds lights to the scene
+	 *
+	 * @param lights
+	 */
+	public void addLight(LightSource... lights) {
+		for (int i = 0; i < lights.length; ++i)
+			_lights.add(lights[i]);
+	}
 }

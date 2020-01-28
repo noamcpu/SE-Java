@@ -60,11 +60,7 @@ public class Render {
 	 * @param inRay
 	 * @return
 	 */
-	/*
-	 * private Color calcColor(GeoPoint geopoint) { Color color=new Color(
-	 * _scene.get_ambietLight().getIntensity()); return
-	 * color.add(geopoint.geometry.getEmission()); }
-	 */
+
 	private Color calcColor(GeoPoint intersection) {
 		Color color = _scene.get_ambietLight().getIntensity();
 		color = color.add(intersection.geometry.getEmission());
@@ -109,13 +105,12 @@ public class Render {
 		}
 	}
 
-
-    /**
-     * calculate the color of intersection point
-     * 
-     * @param geopoint - the intersection point
-     * @return the color
-     */
+	/**
+	 * calculate the color of intersection point
+	 * 
+	 * @param geopoint - the intersection point
+	 * @return the color
+	 */
 	private Color calc_Color(GeoPoint intersection) {
 		Color color = _scene.get_ambietLight().getIntensity();
 		color = color.add(intersection.geometry.getEmission());
@@ -125,53 +120,53 @@ public class Render {
 		double kd = intersection.geometry.material.get_Kd();
 		double ks = intersection.geometry.material.get_Ks();
 		for (LightSource lightSource : _scene.getLights()) {
-		Vector l = lightSource.getL(intersection.point);
-		if ((n.dotProduct(l)) == (n.dotProduct(v))) {
-		Color lightIntensity = lightSource.getIntensity(intersection.point);
-		color = color.add(calcDiffusive(kd, l, n, lightIntensity),
-		calcSpecular(ks, l, n, v, nShininess, lightIntensity));
-		}
+			Vector l = lightSource.getL(intersection.point);
+			if ((n.dotProduct(l)) == (n.dotProduct(v))) {
+				Color lightIntensity = lightSource.getIntensity(intersection.point);
+				color = color.add(calcDiffusive(kd, l, n, lightIntensity),
+						calcSpecular(ks, l, n, v, nShininess, lightIntensity));
+			}
 		}
 		return color;
-		}
-    /**
-     * calculate diffusive effect
-     * 
-     * @param kd             - the diffusive's material
-     * @param l              - vector from the light source to the object
-     * @param n              - the normal vector to the geometry in the intersection
-     *                       point
-     * @param lightIntensity - the light's intensity
-     * @return kd * dotProduct(l,n)
-     */
-    private Color calcDiffusive(double kd, Vector l, Vector n, Color lightIntensity) {
-	double scal = kd * l.dotProduct(n);
-	if (scal < 0)
-	    scal = -scal;
-	return lightIntensity.scale(scal);
-    }
+	}
 
-    /**
-     * calculate the specular effect
-     * 
-     * @param ks             - the specular's material
-     * @param l              - vector from the light source to the object
-     * @param n              - the normal vector to the geometry in the intersection
-     *                       point
-     * @param v              - the vector from the camera to intersection point
-     * @param nShininess     - the shininess' material
-     * @param lightIntensity - the light's intensity
-     * @return ks* dotProduct(-v,r)^nShininess.
-     */
-    private Color calcSpecular(double ks, Vector l, Vector n, Vector v, int nShininess, Color lightIntensity) {
-	double lenght = 2 * l.dotProduct(n);
-	Vector r = l.sub(n.scaling(lenght)).normalization();
-	double vr = -r.dotProduct(v);
-	if (vr <= 0)
-	    return Color.BLACK;
-	return lightIntensity.scale(ks * Math.pow(vr, nShininess));
-    }
+	/**
+	 * calculate diffusive effect
+	 * 
+	 * @param kd             - the diffusive's material
+	 * @param l              - vector from the light source to the object
+	 * @param n              - the normal vector to the geometry in the intersection
+	 *                       point
+	 * @param lightIntensity - the light's intensity
+	 * @return kd * dotProduct(l,n)
+	 */
+	private Color calcDiffusive(double kd, Vector l, Vector n, Color lightIntensity) {
+		double scal = kd * l.dotProduct(n);
+		if (scal < 0)
+			scal = -scal;
+		return lightIntensity.scale(scal);
+	}
 
+	/**
+	 * calculate the specular effect
+	 * 
+	 * @param ks             - the specular's material
+	 * @param l              - vector from the light source to the object
+	 * @param n              - the normal vector to the geometry in the intersection
+	 *                       point
+	 * @param v              - the vector from the camera to intersection point
+	 * @param nShininess     - the shininess' material
+	 * @param lightIntensity - the light's intensity
+	 * @return ks* dotProduct(-v,r)^nShininess.
+	 */
+	private Color calcSpecular(double ks, Vector l, Vector n, Vector v, int nShininess, Color lightIntensity) {
+		double lenght = 2 * l.dotProduct(n);
+		Vector r = l.sub(n.scaling(lenght)).normalization();
+		double vr = -r.dotProduct(v);
+		if (vr <= 0)
+			return Color.BLACK;
+		return lightIntensity.scale(ks * Math.pow(vr, nShininess));
+	}
 
 	/**
 	 * return the image

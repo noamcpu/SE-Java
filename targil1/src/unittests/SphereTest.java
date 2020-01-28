@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import static geometries.Intersectable.GeoPoint;
+
 public class SphereTest {
 
 	/**
@@ -20,7 +21,7 @@ public class SphereTest {
 	@Test
 	public void testGetNormal() {
 		Point3D p = new Point3D(0, 0, 0);
-		Sphere s = new Sphere(5,p);
+		Sphere s = new Sphere(5, p);
 		assertEquals(new Vector(0, 0, 1), s.getNormal(new Point3D(0, 0, 5)));
 	}
 
@@ -31,7 +32,7 @@ public class SphereTest {
 	public void testFindIntersections() {
 		// sphere
 		Point3D p = new Point3D(0, 0, 0);
-		Sphere s = new Sphere(5,p);
+		Sphere s = new Sphere(5, p);
 		/****************** EP ******************/
 		// test1 regular case of 0 intersections
 		assertEquals(null, s.findIntersections(new Ray(new Point3D(-10, 0, 0), new Vector(-10, 10, 0))));

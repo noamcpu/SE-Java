@@ -9,7 +9,7 @@ public class Material {
 	protected double _Ks;
 	protected int _nShininess;
 
-    //*****************constructors**********
+	// *****************constructors**********
 	public Material(double _Kd, double _Ks, int nShininess) {
 		this._Kd = _Kd;
 		this._Ks = _Ks;
@@ -25,6 +25,7 @@ public class Material {
 	public double get_Kd() {
 		return _Kd;
 	}
+
 	/**
 	 * getter of specular attenuation coefficient
 	 *
@@ -33,6 +34,7 @@ public class Material {
 	public double get_Ks() {
 		return _Ks;
 	}
+
 	/**
 	 * getter of shininess power
 	 *
