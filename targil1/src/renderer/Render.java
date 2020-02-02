@@ -1,8 +1,6 @@
 package renderer;
 
 import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
 
 import _scene.Scene;
 import elements.LightSource;
@@ -51,20 +49,7 @@ public class Render {
 			}
 	}
 
-	/**
-	 * calcColor that send to the recursive calcColor
-	 * 
-	 * @param geopoint
-	 * @param inRay
-	 * @return
-	 */
-
-	private Color calcColor(GeoPoint intersection) {
-		Color color = _scene.get_ambietLight().getIntensity();
-		color = color.add(intersection.geometry.getEmission());
-		return color;
-	}
-
+	
 	/**
 	 * finding the closest point
 	 * 
@@ -109,7 +94,7 @@ public class Render {
 	 * @param geopoint - the intersection point
 	 * @return the color
 	 */
-	private Color calc_Color(GeoPoint intersection) {
+	private Color calcColor(GeoPoint intersection) {
 		Color color = _scene.get_ambietLight().getIntensity();
 		color = color.add(intersection.geometry.getEmission());
 		Vector v = intersection.point.sub(_scene.get_camera().get_p0()).normalize();

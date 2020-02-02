@@ -6,6 +6,8 @@ public class SpotLight extends PointLight implements LightSource {
 	protected Vector _direction;
 
 	// ***************** Constructors ********************** //
+	
+	
 	/**
 	 * constructs a spot light in a scene
 	 *
