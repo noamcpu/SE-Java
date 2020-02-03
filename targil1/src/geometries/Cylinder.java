@@ -1,7 +1,7 @@
 package geometries;
 
 import primitives.*;
-
+import static primitives.Util.isZero;
 
 public class Cylinder extends Tube {
 	double _height;
@@ -40,20 +40,23 @@ public class Cylinder extends Tube {
 	}
 
 	/**
-	 * getting Point3D and giving the normal Vector in this point
-	 * 
-	 * @param point the Point3D
-	 * @return the normal Vector
+	 * Gets the direction of the normal vector of the cylinder at a certain point
+	 *
+	 * @param p, the point on the cylinder
+	 * @return the direction of the normal vector
 	 */
 	@Override
 	public Vector getNormal(Point3D p) {
-		Point3D p0 = _axisRay.getP();
 		Vector v = _axisRay.getDirection();
+		Point3D p0 = _axisRay.getP();
+		if (p.equals(p0))
+			return v;
 		Vector u = p.sub(p0); // vector from p0 to p
 		double t = v.dotProduct(u); // size of projection of vector u on the ray
 		// point on the ray and plane crossing P and orthogonal to the ray
-		if (t == 0 || (t - this._height) == 0)
+		if (isZero(t) || isZero(t - this._height)) {
 			return v;
-		return p.sub(p0.addition(v.scaling(t))).normalization();
+		}
+		return p.sub(p0.addition(v.scaling(t))).normalize();
 	}
 }

@@ -8,19 +8,19 @@ import org.junit.Test;
 
 public class VectorTest {
 	/**
-	 * check function add
+	 * test Method for {@link primitives.Vector#add (primitives.Vector)}.
 	 */
 	@Test
 	public void testAdd() {
-		Vector vec1 = new Vector(4, 4, 6);
-		Vector vec2 = new Vector(4, 4, 6);
+		Vector vec = new Vector(1, 1, 1);
+		Vector vec2 = new Vector(2, 2, 2);
 		try {
-			vec1.scaling(-1);
+			vec.add(vec.scaling(-1));
 			fail("didn't throw exception for Vector 0");
 		} catch (IllegalArgumentException e) {
 			assertTrue(true);
 		}
-		assertEquals("Add function is worng ", vec2, vec1.add(vec1));
+		assertEquals("Add function error", vec2, vec.add(vec));
 	}
 
 	/**

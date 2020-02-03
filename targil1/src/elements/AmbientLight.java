@@ -1,6 +1,6 @@
 package elements;
 
-import primitives.*;
+import primitives.Color;
 
 public class AmbientLight extends Light {
 	// ***************** Constructors ********************** //

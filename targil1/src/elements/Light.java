@@ -15,8 +15,4 @@ public abstract class Light {
 		return intensity;
 	}
 
-	public void setintensity(Color color) {
-		this.intensity = color;
-	}
-
 }

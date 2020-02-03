@@ -40,7 +40,25 @@ public class Vector {
 	public Vector(double x, double y, double z) {
 		Point3D head1 = new Point3D(x, y, z);
 		this.head = new Point3D(head1);
+		if (this.head.equals(Point3D.ZERO))
+			throw new IllegalArgumentException("Zero Vector");
 	}
+
+	/**
+	 * Constructs a vector with three coordinates.
+	 *
+	 * @param x coordinate of head point
+	 * @param y coordinate of head point
+	 * @param z coordinate of head point
+	 * @throws newIllegalException when head is (0,0,0)
+	 */
+	public Vector(Coordinate x, Coordinate y, Coordinate z) {
+		Point3D headPoint = new Point3D(x, y, z);
+		if (headPoint.equals(Point3D.ZERO))
+			throw new IllegalArgumentException("Zero Vector");
+		this.head = headPoint;
+	}
+
 
 	// ***************** Getters/Setters ********************** //
 

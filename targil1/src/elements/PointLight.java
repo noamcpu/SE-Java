@@ -31,9 +31,6 @@ public class PointLight extends Light implements LightSource {
 		return _position;
 	}
 
-	public void setPosition(Point3D position) {
-		_position = position;
-	}
 
 	@Override
 	public Color getIntensity(Point3D p) {

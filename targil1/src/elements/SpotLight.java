@@ -3,7 +3,7 @@ package elements;
 import primitives.*;
 
 public class SpotLight extends PointLight implements LightSource {
-	protected Vector _direction;
+	 Vector _direction;
 
 	// ***************** Constructors ********************** //
 	
@@ -24,14 +24,6 @@ public class SpotLight extends PointLight implements LightSource {
 	}
 
 	// *****************Getters/Setters******************//
-
-	public Vector get_direction() {
-		return _direction;
-	}
-
-	public void set_direction(Vector _direction) {
-		this._direction = _direction;
-	}
 
 	public Color gerIntensity(Point3D p) {
 		Vector l = getL(p);
