@@ -103,5 +103,113 @@ public class LightTest {
         render.renderImage();
         render.writeToImage();
     }
+	@Test
+    public void shadowTest1() {
+	Scene scene = new Scene("Test scene");
+	scene.set_camera(new Camera(new Point3D(0, 0, 5000), new Vector(0, -1, 0), new Vector(0, 0, -1)));
+	scene.set_distance(5000);
+	scene.set_background(new Color(0, 0, 10));
+	scene.set_ambietLight(new AmbientLight(new Color(0, 100, 0), 0.1));
+
+	Geometries geometries = new Geometries();
+	geometries.add(
+		new Sphere(new Color(50, 100, 0),new Material(0.5, 0.5, 70) ,  150,new Point3D(0, 0, -200)));
+	geometries.add(new Triangle(new Color(255, 0, 0), new Material(0.5, 0.5, 70) ,new Point3D(100, 100, -50), new Point3D(25, 100, -50),
+		new Point3D(100, 25, -50)));
+	scene.set_geometries(geometries);
+
+	List<LightSource> lights = new ArrayList<LightSource>();
+	lights.add(new DirectionalLight(new Color(255, 255, 255), new Vector(-1, -1, -1)));
+	scene.setLights(lights);
+
+	ImageWriter imageWriter = new ImageWriter("shadow1, traingle", 500, 500, 500, 500);
+	Render render = new Render(imageWriter, scene);
+	render.renderImage();
+	render.writeToImage();
+    }
+
+    @Test
+    public void shadowTest2() {
+	Scene scene = new Scene("Test scene");
+	scene.set_camera(new Camera(new Point3D(0, 0, 5000), new Vector(0, -1, 0), new Vector(0, 0, -1)));
+	scene.set_distance(5000);
+	scene.set_background(new Color(0, 0, 10));
+	scene.set_ambietLight(new AmbientLight(new Color(0, 100, 0), 0.1));
+
+	Geometries geometries = new Geometries();
+	geometries.add(
+		new Sphere(new Color(50, 100, 0),new Material(0.5, 0.5, 70) ,150, new Point3D(0, 0, -200)));
+	geometries.add(new Triangle(new Color(255, 0, 0),  new Material(0.5, 0.5, 70),new Point3D(125, 125, -50), new Point3D(50, 125, -50),
+		new Point3D(125, 50, -50)));
+	scene.set_geometries(geometries);
+
+	List<LightSource> lights = new ArrayList<LightSource>();
+	lights.add(new DirectionalLight(new Color(255, 255, 255), new Vector(-1, -1, -1)));
+	scene.setLights(lights);
+
+	ImageWriter imageWriter = new ImageWriter("shadow2, traingle", 500, 500, 500, 500);
+	Render render = new Render(imageWriter, scene);
+	render.renderImage();
+	render.writeToImage();
+    }
+
+    @Test
+    public void shadowTest3() {
+	Scene scene = new Scene("Test scene");
+	scene.set_camera(new Camera(new Point3D(0, 0, 5000), new Vector(0, -1, 0), new Vector(0, 0, -1)));
+	scene.set_distance(5000);
+	scene.set_background(new Color(0, 0, 10));
+	scene.set_ambietLight(new AmbientLight(new Color(0, 100, 0), 0.1));
+
+	Geometries geometries = new Geometries();
+	geometries.add(
+		new Sphere(new Color(50, 100, 0),new Material(0.5, 0.5, 70), 150 , new Point3D(0, 0, -300)));
+	geometries.add(new Triangle(new Color(255, 0, 0),new Material(0.5, 0.5, 70) ,new Point3D(150, 150, -100), new Point3D(75, 150, -100),
+		new Point3D(150, 75, -100)));
+	scene.set_geometries(geometries);
+
+	List<LightSource> lights = new ArrayList<LightSource>();
+	lights.add(new SpotLight(new Color(255,255,255), new Point3D(170,170,-20), 1, 0.0001, 0.000001, new Vector(-1,0,-1)));
+//	lights.add(new DirectionalLight(new Color(255, 255, 255), new Vector(-1, -1, -1)));
+	scene.setLights(lights);
+
+	ImageWriter imageWriter = new ImageWriter("shadow3, traingle", 500, 500, 500, 500);
+	Render render = new Render(imageWriter, scene);
+	render.renderImage();
+	render.writeToImage();
+    }
+
+    @Test
+    public void shadowTest4() {
+	Scene scene = new Scene("Test scene");
+	scene.set_camera(new Camera(new Point3D(0, 0, 5000), new Vector(0, -1, 0), new Vector(0, 0, -1)));
+	scene.set_distance(5000);
+	scene.set_background(new Color(0, 0, 10));
+	scene.set_ambietLight(new AmbientLight(new Color(0, 100, 0), 0.1));
+	
+	Geometries geometries = new Geometries();
+	scene.set_geometries(geometries);
+	geometries.add(new Triangle(new Color(255, 138, 22), new Material(0.6, 0.38, 72), new Point3D(-1, -1, -150),
+		new Point3D(-240, -1, -150), new Point3D(-1, -240, -150)));
+	geometries.add(new Triangle(new Color(255, 138, 22), new Material(0.6, 0.38, 72), new Point3D(1, 1, -150), new Point3D(240, 1, -150),
+		new Point3D(1, 240, -150)));
+	geometries.add(new Triangle(new Color(255, 138, 22), new Material(0.6, 0.38, 72), new Point3D(-1, 1, -150), new Point3D(-240, 1, -150),
+		new Point3D(-1, 240, -150)));
+	geometries.add(new Triangle(new Color(255, 138, 22), new Material(0.6, 0.38, 72), new Point3D(1, -1, -150), new Point3D(240, -1, -150),
+		new Point3D(1, -240, -150)));
+	geometries.add(
+		new Sphere(new Color(16, 20, 167), new Material(0.6, 0.38, 80), 50, new Point3D(0, 0, -120)));
+	geometries.add(
+		new Sphere(new Color(230, 23, 29), new Material(0.6, 0.38, 80) ,40, new Point3D(-80, -80, -160)));
+
+	ArrayList<LightSource> lights = new ArrayList<LightSource>();
+	scene.setLights(lights);
+	lights.add(new DirectionalLight(new Color(255, 255, 255), new Vector(-1, -1, -1)));
+
+	ImageWriter imageWriter = new ImageWriter("shaddows on spheres", 500, 500, 500, 500);
+	Render render = new Render(imageWriter, scene);
+	render.renderImage();
+	render.writeToImage();
+    }
 
 }

@@ -67,7 +67,7 @@ public class Render {
         if (level == 0 || k < MIN_CALC_COLOR_K) return Color.BLACK;
         Color color = geopoint.geometry.getEmission(); // remove Ambient Light
 
-        Vector v = geopoint.point.sub(_scene.get_camera().get_p0()).normalize();
+        Vector v = geopoint.point.sub(_scene.get_camera().get_p0()).normalization();
         Vector n = geopoint.geometry.getNormal(geopoint.point);
         double kd = geopoint.geometry.getMaterial().get_Kd();
         double ks = geopoint.geometry.getMaterial().get_Ks();
