@@ -1,6 +1,8 @@
 package geometries;
 
 import primitives.*;
+
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import static primitives.Util.*;
@@ -13,6 +15,7 @@ public class Plane extends Geometry {
 	private Point3D _p;
 
 	// ***************** Constructors ********************** //
+
 	/**
 	 * getting normal Vector and Point3D for initialization the Plane
 	 * 
@@ -87,24 +90,26 @@ public class Plane extends Geometry {
         this(emission, p1, p2, p3);
         this.material = material;
     }
-	// ***************** Getters ********************** //
+
+	// ***************** Getters/Setters ********************** //
 
 	/**
-	 * giving the normal Vector
-	 * 
-	 * @return the Vector
+	 * Gets the normal of the plane at a certain point
+	 *
+	 * @param p is the point of the normal
+	 * @return the normal of the plane
 	 */
-	public Vector getNormal() {
+	public Vector getNormal(Point3D p) {
 		return _normal;
 	}
 
 	/**
-	 * giving the Point3D
-	 * 
-	 * @return the point
+	 * Gets the normal of the plane
+	 *
+	 * @return the normal of the plane
 	 */
-	public Point3D get_P() {
-		return _p;
+	public Vector getNormal() {
+		return _normal;
 	}
 
 	// ***************** operations ********************** //
@@ -115,40 +120,25 @@ public class Plane extends Geometry {
 	}
 
 	/**
-	 * giving the Point3D
-	 * 
-	 * @param p
-	 * @return the normal
+	 * get ray and return list of the intersections between the ray and the plane
 	 */
 	@Override
-	public Vector getNormal(Point3D p) {
-		return _normal;
-
-	}
-
-	/**
-	 * finds intersections of the ray with the plane
-	 *
-	 * @param ray
-	 * @return intersection point
-	 */
 	public List<GeoPoint> findIntersections(Ray ray) {
-		Point3D p0 = ray.getP();
 		Vector v = ray.getDirection();
-
-		double s = alignZero(this._normal.dotProduct(v));
-		if (s == 0)
+		double d =v.dotProduct(this._normal);
+		if (d == 0)
 			return null;
-
-		Vector pp0 = null;
+		Point3D p0 = ray.getP();
+		Vector u = null;
 		try {
-			pp0 = this._p.sub(p0);
+			u = this._p.sub(p0);
 		} catch (Exception e) {
-
 			return null;
 		}
+		double t =u.dotProduct(this._normal) /d;
+		if (t <= 0)
+			return null;
 
-		double t = alignZero(this._normal.dotProduct(pp0) / s);
-		return (t <= 0) ? null : Arrays.asList(new GeoPoint(this, p0.addition(v.scaling(t))));
+		return List.of(new GeoPoint(this, p0.add(v.scale(t))));
 	}
 }

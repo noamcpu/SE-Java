@@ -1,33 +1,36 @@
 package geometries;
 
-import static primitives.Util.*;
 import primitives.Color;
+import primitives.Material;
 
-
-public abstract class RadialGeometry extends Geometry{
-
+/**
+ * class represents an abstract base class of radial geometries
+ */
+public abstract class RadialGeometry extends Geometry {
 	protected double _radius;
 
 	// ***************** Constructors ********************** //
-	/**
-	 * getting the radius for initialization the RadialGeometry
-	 * 
-	 * @param _radius
-	 */
-	public RadialGeometry(double _radius) {
-		if (alignZero(_radius) <= 0)
-			throw new IllegalArgumentException("logical wrong");
+	 public RadialGeometry(double _radius) {
+	        if (_radius > 0)
+	            this._radius = _radius;
+	        else {
+	            throw new IllegalArgumentException("radius cant be smaller then zero");
+	        }
+	    }
 
-		this._radius = _radius;
-	}
+	    public RadialGeometry(Color emission, Material material, double _radius) {
+	        this(_radius);
+	        this.emission = emission;
+	        this.material = material;
+	    }
 	// ***************** Getters/Setters ********************** //
+
 	/**
-	 * giving the value of the radius
-	 * 
+	 * Gets the radius of the geometry
+	 *
 	 * @return the radius
 	 */
-	public double get_radius() {
+	public double getRadius() {
 		return _radius;
 	}
-
 }

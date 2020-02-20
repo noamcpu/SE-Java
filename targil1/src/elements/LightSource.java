@@ -1,7 +1,12 @@
 package elements;
 
-import primitives.*;
+import primitives.Color;
+import primitives.Point3D;
+import primitives.Vector;
 
+/**
+ * class represents an interface for lights in a scene
+ */
 public interface LightSource {
 	// ***************** Getters/Setters ********************** //
 
@@ -11,7 +16,7 @@ public interface LightSource {
 	 * @param p - the point
 	 * @return the color at the point
 	 */
-	public Color getIntensity(Point3D p);
+	Color getIntensity(Point3D p);
 
 	/**
 	 * getter of vector between light position and point
@@ -19,6 +24,13 @@ public interface LightSource {
 	 * @param p - the point
 	 * @return the distance
 	 */
-	public Vector getL(Point3D p);
+	Vector getL(Point3D p);
 
+	/**
+	 * getter of distance between light position and point
+	 *
+	 * @param p - the point
+	 * @return the distance
+	 */
+	double getDistance(Point3D p);
 }

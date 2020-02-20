@@ -4,8 +4,8 @@ package primitives;
  * class Ray with point head and direction from vector
  */
 public class Ray {
-	protected Point3D p;
-	protected Vector direction;
+	private Point3D p;
+	private Vector direction;
 
 	// ***************** Constructors ********************** //
 
@@ -18,11 +18,6 @@ public class Ray {
 	public Ray(Point3D p, Vector direction) {
 		this.p = p;
 		this.direction = direction.normalize();// work with normal vectors
-	}
-
-	public Ray(Ray k) {
-		this.p = k.p;
-		this.direction = k.direction;
 	}
 
 	// ***************** Getters/Setters ********************** //

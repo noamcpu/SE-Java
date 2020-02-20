@@ -1,13 +1,17 @@
 package elements;
 
-import primitives.*;
+import primitives.Color;
+import primitives.Point3D;
+import primitives.Vector;
 
+/**
+ * class represents a point light in a scene
+ */
 public class PointLight extends Light implements LightSource {
 	Point3D _position;
-
-	double _Kc, _Kl, _Kq;
-
+	double _kC, _kL, _kQ;
 	// ***************** Constructors ********************** //
+
 	/**
 	 * constructs a point light
 	 *
@@ -17,31 +21,27 @@ public class PointLight extends Light implements LightSource {
 	 * @param kL
 	 * @param kQ
 	 */
-	public PointLight(Color _color, Point3D _position, double _Kc, double _Kl, double _Kq) {
-		super();
-		this._position = _position;
-		this._Kc = _Kc;
-		this._Kl = _Kl;
-		this._Kq = _Kq;
+	public PointLight(Color color, Point3D position, double kC, double kL, double kQ) {
+		_intensity = color;
+		this._position = position;
+		this._kC = kC; // kc >= 1 - because the light reduces by the distance
+		this._kL = kL; // linear attenuation reduction
+		this._kQ = kQ; // quadratic attenuation reduction
 	}
 
-	// *****************Getters/Setters******************//
-
-	public Point3D getPosition() {
-		return _position;
+	// ***************** Getters/Setters ********************** //
+	@Override
+	public Vector getL(Point3D p) {
+		return p.sub(_position).normalize();
 	}
-
-
 	@Override
 	public Color getIntensity(Point3D p) {
 		double d = _position.distance(p);
-		double divisionFactor = _Kc + _Kl * d + _Kq * d * d;
-		return getIntensity().reduce(divisionFactor);
+		double divisionFactor = _kC + _kL * d + _kQ * d * d;
+			return getIntensity().reduce(divisionFactor);
 	}
 
-	@Override
-	public Vector getL(Point3D p) {
-		return p.sub(_position).normalization();
+	public double getDistance(Point3D p) {
+		return this._position.distance(p);
 	}
-
 }

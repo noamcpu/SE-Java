@@ -16,8 +16,8 @@ public interface Intersectable {
 		 * @param point    - the point in the geometry
 		 */
 		public GeoPoint(Geometry geometry, Point3D point) {
-			this.point = point;
 			this.geometry = geometry;
+			this.point = point;
 
 		}
 		// ***************** Getters/Setters ********************** //
@@ -61,6 +61,6 @@ public interface Intersectable {
 	 * @param r
 	 * @return list of intersections points
 	 */
-	List<GeoPoint> findIntersections(Ray r);
+public	List<GeoPoint> findIntersections(Ray r);
 
 }

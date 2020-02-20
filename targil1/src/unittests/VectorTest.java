@@ -1,53 +1,42 @@
 package unittests;
 
-import primitives.*;
-
 import static org.junit.Assert.*;
-import java.lang.Math;
+
 import org.junit.Test;
 
+import primitives.Point3D;
+import primitives.Vector;
+
+/**
+ * Class tests vector class operations.
+ */
 public class VectorTest {
 	/**
-	 * test Method for {@link primitives.Vector#add (primitives.Vector)}.
+	 * check function add
 	 */
 	@Test
-	public void testAdd() {
-		Vector vec = new Vector(1, 1, 1);
-		Vector vec2 = new Vector(2, 2, 2);
-		try {
-			vec.add(vec.scaling(-1));
-			fail("didn't throw exception for Vector 0");
-		} catch (IllegalArgumentException e) {
-			assertTrue(true);
-		}
-		assertEquals("Add function error", vec2, vec.add(vec));
+	 public void testAdd() {
+		Vector vec1 = new Vector(1, 2, 3);
+		Vector vec2 = new Vector(3, 2, 1);
+		assertEquals(new Vector(4, 4, 4), vec1.add(vec2));
 	}
-
 	/**
 	 * check function sub
 	 */
 	@Test
-	public void testSubtract() {
-		Vector vec1 = new Vector(2, 2, 2);
-		Vector vec2 = new Vector(4, 4, 4);
-		try {
-			vec1.sub(vec1);
-			fail("didn't throw exception for Vector 0");
-		} catch (IllegalArgumentException e) {
-			assertTrue(true);
-		}
-		assertEquals("Subtract function error", vec1, vec2.sub(vec1));
+	 public void testSubtract() {
+		Vector vec1 = new Vector(1, 2, 3);
+		Vector vec2 = new Vector(3, 2, 1);
+		assertEquals(new Vector(-2, 0, 2), vec1.sub(vec2));
 	}
-
 	/**
 	 * check function scale
 	 */
 	@Test
-	public void testScailing() {
+	 public void testScailing() {
 		Vector vec1 = new Vector(1, 2, 3);
-		assertEquals(new Vector(2, 4, 6), vec1.scaling(2));
+		assertEquals(new Vector(2, 4, 6), vec1.scale(2));
 	}
-
 	/**
 	 * check function dot product
 	 */
@@ -71,12 +60,11 @@ public class VectorTest {
 	 * check function cross product
 	 */
 	@Test
-	public void testCrossProduct() {
+	 public void testCrossProduct() {
 		Vector vec1 = new Vector(0, 0, 1);
 		Vector vec2 = new Vector(0, 1, 0);
 		assertEquals(new Vector(-1, 0, 0), vec1.crossProduct(vec2));
 	}
-
 	/**
 	 * check function length
 	 */
@@ -89,11 +77,12 @@ public class VectorTest {
 	/**
 	 * check function normal
 	 */
+
 	@Test
-	public void testNormalization() {
-		Vector vec1 = new Vector(0, 9, 0);
-		Vector vec2 = new Vector(0, 1, 0);
-		assertEquals(vec2, vec1.normalize());
+	 public void testNormalize() {
+		Vector vec1 = new Vector(1, 1, 1);
+		assertEquals(new Vector(Math.sqrt(1.0 / 3), Math.sqrt(1.0 / 3), Math.sqrt(1.0 / 3)), vec1.normalization());
+				
 	}
 
 }

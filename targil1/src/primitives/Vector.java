@@ -6,40 +6,31 @@ import java.lang.Math;
  * class Vector with point3D head
  */
 public class Vector {
-	protected Point3D head;
+	private Point3D head;
 
 	// ***************** Constructors ********************** //
-
 	/**
-	 * getting point3D head for initialization the vector (error for Vector (0,0,0))
-	 * 
-	 * @param direction the given point3D
+	 * Constructs a vector with head point
+	 *
+	 * @param head point of the vector
+	 * @throws newIllegalException when head is (0,0,0)
 	 */
 	public Vector(Point3D head) {
-		if (Point3D.ZERO.equals(head))
-			throw new IllegalArgumentException("vector 0 is wrong");
+		if (head.equals(Point3D.ZERO))
+			throw new IllegalArgumentException("Zero Vector");
 		this.head = head;
 	}
 
 	/**
-	 * Enters the value of the existing vector to other
-	 * 
-	 * @param testP the given Vector
-	 */
-	public Vector(Vector other) {
-		head = new Point3D(other.head);
-	}
-
-	/**
-	 * getting 3 double numbers for initialization of coordinates' head
-	 * 
-	 * @param x first coordinate
-	 * @param y second coordinate
-	 * @param z third coordinate
+	 * Constructs a vector by values of three coordinates of vector's head
+	 *
+	 * @param x coordinate value
+	 * @param y coordinate value
+	 * @param z coordinate value
+	 * @throws newIllegalException when head is (0,0,0)
 	 */
 	public Vector(double x, double y, double z) {
-		Point3D head1 = new Point3D(x, y, z);
-		this.head = new Point3D(head1);
+		this.head = new Point3D(x, y, z);
 		if (this.head.equals(Point3D.ZERO))
 			throw new IllegalArgumentException("Zero Vector");
 	}
@@ -59,6 +50,15 @@ public class Vector {
 		this.head = headPoint;
 	}
 
+	/**
+	 * Construct head point of vector class with a vector
+	 *
+	 * @param other vector
+	 * @throws newIllegalException when head is (0,0,0)
+	 */
+	public Vector(Vector other) {
+		this.head = other.head;
+	}
 
 	// ***************** Getters/Setters ********************** //
 
@@ -88,9 +88,6 @@ public class Vector {
 		return head.equals(other.head);
 	}
 
-	/**
-	 * print the head of vector
-	 */
 	@Override
 	public String toString() {
 
@@ -100,62 +97,70 @@ public class Vector {
 	// ***************** Operations ******************** //
 
 	/**
-	 * Vector Addition
-	 * 
-	 * @param vec the given Vector
-	 * @return
+	 * Vector addition operation.
+	 *
+	 * @param other vector
+	 * @return equivalent vector
 	 */
-	public Vector add(Vector vec) {
-		Point3D A = new Point3D(this.head.x.add(vec.head.x), this.head.y.add(vec.head.y), this.head.z.add(vec.head.z));
-		return new Vector(A);
+	public Vector add(Vector other) {
+		return new Vector(this.head.add(other));
 	}
 
 	/**
-	 * Vector subtraction
-	 * 
-	 * @param vec the given Vector
-	 * @return
+	 * Vector subtraction operation.
+	 *
+	 * @param other Vector
+	 * @return equivalent vector.
 	 */
-	public Vector sub(Vector vec) {
-		Point3D A = new Point3D(this.head.x.subtract(vec.head.x), this.head.y.subtract(vec.head.y),
-				this.head.z.subtract(vec.head.z));
-		return new Vector(A);
+	public Vector sub(Vector other) {
+		return this.head.sub(other.getHead());
 	}
 
 	/**
-	 * Vector scaling
-	 * 
-	 * @param scal the given number
-	 * @return
+	 * Scale vector by num.
+	 *
+	 * @param num scale size
+	 * @return scaled vector by num
 	 */
-	public Vector scaling(double scal) {
-		Point3D A = new Point3D(this.head.x.scale(scal), this.head.y.scale(scal), this.head.z.scale(scal));
-		return new Vector(A);
+	public Vector scale(double num) {
+		double x = head.getX();
+		double y = head.getY();
+		double z = head.getZ();
+		return new Vector(num * x, num * y, num * z);
 	}
 
 	/**
-	 * Dot product between the given vector and the exist vector gives a scalar
-	 * 
-	 * @param vec the given vector
-	 * @return double number
+	 * The dot-product function takes two 3D space vectors and return a number as
+	 * the formula (a,b,c) * (h,y,k) = a*h+b*y+c*k
+	 *
+	 * @param other Vector
+	 * @return Outcome of the formula below.
 	 */
-	public double dotProduct(Vector vec) {
-		return (this.head.x.multiply(vec.head.x).get() + this.head.y.multiply(vec.head.y).get()
-				+ this.head.z.multiply(vec.head.z).get());
+	public double dotProduct(Vector other) {
+		double x1 = head.getX();
+		double y1 = head.getY();
+		double z1 = head.getZ();
+		double x2 = other.head.getX();
+		double y2 = other.head.getY();
+		double z2 = other.head.getZ();
+		return (x1 * x2 + y1 * y2 + z1 * z2);
 	}
 
 	/**
-	 * Cross product between vector v and vector u gives: u x v
-	 * 
-	 * @param vec the given vector
-	 * @return new vector
+	 * cross product multiplication define as the result of (a,b,c) cross(h,y,f) =
+	 * (b*f-c*y,c*h-a*f,a*y-b*h).
+	 *
+	 * @param other vector .
+	 * @return vector orthogonal to each one of the two vectors.
 	 */
-	public Vector crossProduct(Vector vec) {
-
-		Point3D A = new Point3D((this.head.y.multiply(vec.head.z).subtract(this.head.z.multiply(vec.head.y))),
-				(this.head.z.multiply(vec.head.x).subtract(this.head.x.multiply(vec.head.z))),
-				(this.head.x.multiply(vec.head.y).subtract(this.head.y.multiply(vec.head.x))));
-		return new Vector(A);
+	public Vector crossProduct(Vector other) {
+		double x1 = head.getX();
+		double y1 = head.getY();
+		double z1 = head.getZ();
+		double x2 = other.head.getX();
+		double y2 = other.head.getY();
+		double z2 = other.head.getZ();
+		return new Vector(y1 * z2 - y2 * z1, z1 * x2 - z2 * x1, x1 * y2 - x2 * y1);
 	}
 
 	/**
@@ -164,10 +169,9 @@ public class Vector {
 	 * @return double number
 	 */
 	public double length2() {
-		double x = head.getX().get();
-		double y = head.getY().get();
-		double z = head.getZ().get();
-
+		double x = head.getX();
+		double y = head.getY();
+		double z = head.getZ();
 		return x * x + y * y + z * z;
 	}
 
@@ -186,7 +190,7 @@ public class Vector {
 	 * @return the normal vector
 	 */
 	public Vector normalize() {
-		return scaling(1 / length());
+		return scale(1 / length());
 	}
 
 	/**
@@ -196,9 +200,9 @@ public class Vector {
 	 */
 	public Vector normalization() {
 		double l = length();
-		double x = head.getX().get();
-		double y = head.getY().get();
-		double z = head.getZ().get();
+		double x = head.getX();
+		double y = head.getY();
+		double z = head.getZ();
 		head = new Point3D(x / l, y / l, z / l);
 		return this;
 	}

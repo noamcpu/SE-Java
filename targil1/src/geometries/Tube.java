@@ -1,15 +1,16 @@
 package geometries;
 
-import java.util.List;
+import static primitives.Util.*;
 
-import geometries.Intersectable.GeoPoint;
+import java.util.List;
 import primitives.*;
 
 /**
- * class Tube with radius and _axisRay Ray
+ * class Tube represents a tube in the space
  */
+
 public class Tube extends RadialGeometry {
-	Ray _axisRay;
+	protected Ray _axisRay;
 
 	// ***************** Constructors ********************** //
 
@@ -23,46 +24,45 @@ public class Tube extends RadialGeometry {
 		super(radius);
 		_axisRay = axis;
 	}
+	// ***************** Getters/Setters ********************** //
 
-	// ***************** Getters ********************** //
 	/**
-	 * giving the Ray _axisRay
-	 * 
-	 * @return the point
+	 * Gets the axis of the tube
+	 *
+	 * @return axis of the tube
 	 */
-	public Ray get_axisRay() {
+	public Ray getAxisRay() {
 		return _axisRay;
 	}
-
-	// ***************** operations ********************** //
-	@Override
-	public String toString() {
-		return "Tube:_axisRay=" + _axisRay + ", radius=" + _radius;
-
-	}
+	// ***************** Operations ******************** //
 
 	/**
-	 * Gets the normal of the tube to the point
-	 * 
-	 * @param p the point of the normal
+	 * Gets the normal of the tube at a certain point
+	 *
+	 * @param p, the point of the normal
 	 * @return the normal of the tube
 	 */
 	public Vector getNormal(Point3D p) {
 		Point3D p0 = _axisRay.getP();
 		Vector v = _axisRay.getDirection();
-		Vector u = p.sub(p0); 
-		double t = v.dotProduct(u); 
-		Point3D o;
-		if (t == 0)
-			o = p0;
-		else
-			o = p0.addition(v.scaling(t));
 
+		Vector u = null;
+		try {
+			u = p.sub(p0); // vector from p0 to p
+		} catch (Exception e) {
+			return v;
+		}
+
+		double t = alignZero(v.dotProduct(u)); // size of projection of vector u on the ray
+		if (t == 0)
+			return p.sub(p0).normalization();
+
+		// point on the ray and plane crossing P and orthogonal to the ray
+		Point3D o = p0.add(v.scale(t));
 		return p.sub(o).normalization();
 	}
 
-	public List<GeoPoint> findIntersections(Ray r) {
-		// TODO Auto-generated method stub
+	public List<GeoPoint> findIntersections(Ray ray) {
 		return null;
 	}
 }

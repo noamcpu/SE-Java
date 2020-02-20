@@ -3,7 +3,7 @@ package elements;
 import primitives.*;
 
 public abstract class Light {
-	Color intensity;
+	Color _intensity;
 	// ***************** Getters/Setters ********************** //
 
 	/**
@@ -12,7 +12,7 @@ public abstract class Light {
 	 * @return intensity color
 	 */
 	public Color getIntensity() {
-		return intensity;
+		return _intensity;
 	}
 
 }

@@ -58,11 +58,9 @@ public class Geometries implements Intersectable {
 	public List<GeoPoint> findIntersections(Ray ray) {
 		List<GeoPoint> intersections = new ArrayList<>();
 		for (int i = 0; i < shapes.size(); ++i) {
-			// if an intersection is found, add it to the list
 			if (shapes.get(i).findIntersections(ray) != null)
 				intersections.add(shapes.get(i).findIntersections(ray).get(0));
 		}
-		// if no intersections were found, return null
 		if (intersections.size() == 0)
 			return null;
 		return intersections;

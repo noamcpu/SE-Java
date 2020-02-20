@@ -9,9 +9,9 @@ import primitives.Vector;
  * class that getting 3 coordinates
  */
 public class Point3D {
-	protected Coordinate x;
-	protected Coordinate y;
-	protected Coordinate z;
+	private Coordinate x;
+	private Coordinate y;
+	private Coordinate z;
 
 	public static final Point3D ZERO = new Point3D(Coordinate.ZERO, Coordinate.ZERO, Coordinate.ZERO);
 
@@ -28,17 +28,6 @@ public class Point3D {
 		this.x = x;
 		this.y = y;
 		this.z = z;
-	}
-
-	/**
-	 * Enters the value of the existing point 3D to other
-	 * 
-	 * @param other existing point 3D
-	 */
-	public Point3D(Point3D other) {
-		x = new Coordinate(other.x);
-		y = new Coordinate(other.y);
-		z = new Coordinate(other.z);
 	}
 
 	/**
@@ -64,8 +53,8 @@ public class Point3D {
 	 * 
 	 * @return x
 	 */
-	public Coordinate getX() {
-		return x;
+	public double getX() {
+		return x._coord;
 	}
 
 	/**
@@ -73,8 +62,8 @@ public class Point3D {
 	 * 
 	 * @return y
 	 */
-	public Coordinate getY() {
-		return y;
+	public double getY() {
+		return y._coord;
 	}
 
 	/**
@@ -82,8 +71,8 @@ public class Point3D {
 	 * 
 	 * @return z
 	 */
-	public Coordinate getZ() {
-		return z;
+	public double getZ() {
+		return z._coord;
 	}
 
 	// ***************** Administration ******************** //
@@ -111,52 +100,59 @@ public class Point3D {
 	// ***************** Operations ******************** //
 
 	/**
-	 * getting point 3D and make vector from the 2 points
-	 * 
-	 * @param obj The point you get
-	 * @return sub vector
+	 * 3D point subtraction operation by coordinates .
+	 *
+	 * @param other initial 3D space point.
+	 * @return the vector which ends in the point and begins in other .
 	 */
-	public Vector sub(Point3D po) {
-		Point3D temp;
-		temp = new Point3D(this.getX().subtract(po.getX()).get(), this.getY().subtract(po.getY()).get(),
-				this.getZ().subtract(po.getZ()).get());
-		return new Vector(temp);
+	public Vector sub(Point3D other) {
+		double x1 = x.get();
+		double y1 = y.get();
+		double z1 = z.get();
+		double x2 = other.x.get();
+		double y2 = other.y.get();
+		double z2 = other.z.get();
+		return new Vector(new Point3D(x1 - x2, y1 - y2, z1 - z2));
 	}
 
 	/**
-	 * getting point 3D and make addition with the given point
-	 * 
-	 * @param obj The point you get
-	 * @return add vector
+	 * 3D point addition operation by coordinates .
+	 *
+	 * @param vector Vector
+	 * @return the head point .
 	 */
-	public Point3D addition(Vector a) {
-		Point3D b = new Point3D(this.getX().add(a.getHead().getX()).get(), this.getY().add(a.getHead().getY()).get(),
-				this.getZ().add(a.getHead().getZ()).get());
-		return b;
+	public Point3D add(Vector vector) {
+		double x1 = x.get();
+		double y1 = y.get();
+		double z1 = z.get();
+		double x2 = vector.getHead().x.get();
+		double y2 = vector.getHead().y.get();
+		double z2 = vector.getHead().z.get();
+		return new Point3D(x1 + x2, y1 + y2, z1 + z2);
 	}
 
 	/**
 	 * getting point 3D and calculate the distance squared between the given point
 	 * 
-	 * @param obj The point you get
+	 * @param other The point you get
 	 * @return distance squared
 	 */
-	public double distance2(Point3D obj) {
-		Coordinate dx = this.x.subtract(obj.x);
-		Coordinate dy = this.y.subtract(obj.y);
-		Coordinate dz = this.z.subtract(obj.z);
-		return dx.get() * dx.get() + dy.get() * dy.get() + dz.get() * dz.get();
+	public double distance2(Point3D other) {
+		double dx = this.x.subtract(other.x).get();
+		double dy = this.y.subtract(other.y).get();
+		double dz = this.z.subtract(other.z).get();
+		return dx * dx + dy * dy + dz * dz;
 	}
 
 	/**
-	 * /** getting point 3D and calculate the distance between the given point
+	 * getting point 3D and calculate the distance between the given point
 	 * 
-	 * @param obj The point you get
+	 * @param other The point you get
 	 * @return distance
 	 */
 
-	public double distance(Point3D obj) {
-		return Math.sqrt(distance2(obj));
+	public double distance(Point3D other) {
+		return Math.sqrt(distance2(other));
 
 	}
 }

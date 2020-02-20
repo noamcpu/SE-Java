@@ -1,24 +1,28 @@
 package unittests;
 
 import static org.junit.Assert.*;
+
+import primitives.*;
+import geometries.*;
 import org.junit.Test;
 
-import geometries.*;
-import primitives.*;
-
+/**
+ * Test class of Tube 
+ */
 public class TubeTest {
-	/**
-	 * return normal of tube
-	 */
+    public static Point3D p = new Point3D(0, 0, 0);
+    public static Vector v = new Vector(0, 1, 0);
+    public static Ray r= new Ray(p, v);
 
-	@Test
-	public void testGetNormal() {
-		Ray r = new Ray(new Point3D(0, 0, 0), new Vector(0, 1, 0));
-		Tube tu = new Tube(r, 5);
-		Point3D p = new Point3D(1, 2, 0);
-		Vector vec = new Vector(1, 0, 0);
-		assertEquals(tu.getNormal(p), vec);
-
-	}
-
+    /**
+     * test Method for fint intersection of tube
+     */
+    @Test
+    public void testGetNormal() {
+        // Test of normal on the tube
+        Tube tube = new Tube(r, 1);
+        Point3D p = new Point3D(1, 2, 0);
+        Vector vec = new Vector(1, 0, 0);
+        assertEquals("Normal function error", tube.getNormal(p), vec);
+    }
 }

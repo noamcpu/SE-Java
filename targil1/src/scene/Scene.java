@@ -1,4 +1,4 @@
-package _scene;
+package scene;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,14 +28,14 @@ public class Scene {
 	 * @param _camera
 	 * @param _distance
 	 */
-	public Scene(String _sceneName, Color _background, AmbientLight _ambietLight, Geometries _geometries,
-			Camera _camera, double _distance) {
-		this._sceneName = _sceneName;
-		this._background = _background;
-		this._ambietLight = _ambietLight;
-		this._geometries = _geometries;
-		this._camera = _camera;
-		this._distance = _distance;
+	public Scene(String sceneName, Color background, AmbientLight ambietLight, Geometries geometries,
+			Camera camera, double distance) {
+		this._sceneName = sceneName;
+		this._background = background;
+		this._ambietLight = ambietLight;
+		this._geometries = geometries;
+		this._camera = camera;
+		this._distance = distance;
 	}
 
 	/**
@@ -81,7 +81,7 @@ public class Scene {
 	 *
 	 * @return background
 	 */
-	public Color get_background() {
+	public Color getBackground() {
 		return _background;
 	}
 
@@ -90,7 +90,7 @@ public class Scene {
 	 *
 	 * @param background
 	 */
-	public void set_background(Color _background) {
+	public void setBackground(Color _background) {
 		this._background = _background;
 	}
 
@@ -99,7 +99,7 @@ public class Scene {
 	 *
 	 * @return ambient
 	 */
-	public AmbientLight get_ambietLight() {
+	public AmbientLight getAmbient() {
 		return _ambietLight;
 	}
 
@@ -108,7 +108,7 @@ public class Scene {
 	 *
 	 * @param ambient
 	 */
-	public void set_ambietLight(AmbientLight _ambietLight) {
+	public void setAmbient(AmbientLight _ambietLight) {
 		this._ambietLight = _ambietLight;
 	}
 
@@ -117,7 +117,7 @@ public class Scene {
 	 *
 	 * @return geometries
 	 */
-	public Geometries get_geometries() {
+	public Geometries getGeometries() {
 		return _geometries;
 	}
 
@@ -126,7 +126,7 @@ public class Scene {
 	 *
 	 * @return geometries
 	 */
-	public void set_geometries(Geometries _geometries) {
+	public void setGeometries(Geometries _geometries) {
 		this._geometries = _geometries;
 	}
 
@@ -135,7 +135,7 @@ public class Scene {
 	 *
 	 * @return camera
 	 */
-	public Camera get_camera() {
+	public Camera getCamera() {
 		return _camera;
 	}
 
@@ -144,7 +144,7 @@ public class Scene {
 	 *
 	 * @param camera
 	 */
-	public void set_camera(Camera _camera) {
+	public void setCamera(Camera _camera) {
 		this._camera = _camera;
 	}
 
@@ -153,7 +153,7 @@ public class Scene {
 	 *
 	 * @return distance
 	 */
-	public double get_distance() {
+	public double getDistance() {
 		return _distance;
 	}
 
@@ -162,7 +162,7 @@ public class Scene {
 	 *
 	 * @param distance
 	 */
-	public void set_distance(double _distance) {
+	public void setDistance(double _distance) {
 		this._distance = _distance;
 	}
 

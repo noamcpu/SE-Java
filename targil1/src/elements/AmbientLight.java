@@ -12,7 +12,7 @@ public class AmbientLight extends Light {
 	 * @param k - Attenuation coefficient
 	 */
 	public AmbientLight(Color i, double k) {
-		intensity = i.scale(k);
+		_intensity = i.scale(k);
 	}
 
 	/**
@@ -21,7 +21,7 @@ public class AmbientLight extends Light {
 	 * @param i - Light color
 	 */
 	public AmbientLight(Color i) {
-		intensity = i;
+		_intensity = i;
 	}
 	// ***************** Getters/Setters ********************** //
 
@@ -31,6 +31,6 @@ public class AmbientLight extends Light {
 	 * @return light intensity
 	 */
 	public Color getIntensity() {
-		return intensity;
+		return _intensity;
 	}
 }

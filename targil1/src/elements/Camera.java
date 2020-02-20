@@ -1,100 +1,96 @@
 package elements;
 
 import primitives.*;
+
 import static primitives.Util.*;
-/*
- * class for element camera 
+
+/**
+ * class Camera represents a view point in the 3D space
  */
-
 public class Camera {
-	Point3D _p0;
-	Vector _vUp;
-	Vector _vTo;
-	Vector _vRight;
+	Point3D _p0; // location of the camera in the space
+	Vector _vUp; // Y axis vector
+	Vector _vTo; // Z axis vector
+	Vector _vRight; // X axis vector
+	// ***************** Constructors ********************** //
 
-// ***************** Constructors ********************** //
 	/**
 	 * Constructor Camera
 	 * 
-	 * @param p0  - the location of camera
+	 * @param p0  - the locition of camera
 	 * @param vUp - vector up of camera
 	 * @param vTo - vector to of camera
 	 */
 	public Camera(Point3D p0, Vector vUp, Vector vTo) {
 		_p0 = p0;
-		_vUp = vUp.normalize();
-		_vTo = vTo.normalize();
-		if (!isZero(_vUp.dotProduct(_vTo)))
-			throw new IllegalArgumentException("Vup and Vto must be orthogonal");
+		_vUp = vUp.normalization();
+		_vTo = vTo.normalization();
 		_vRight = vTo.crossProduct(vUp).normalization();
 	}
 
-// ***************** Getters********************** //
+	// ***************** Getters/Setters ********************** //
 
 	/**
 	 * Getter of camera's location
 	 *
 	 * @return point of location
 	 */
-	public Point3D get_p0() {
+	public Point3D getP0() {
 		return _p0;
 	}
 
 	/**
-	 * Getter of _vup 0f the camera
+	 * Getter of Y axis in relation to the camera
 	 *
-	 * @return _vup
+	 * @return Y axis vector
 	 */
 	public Vector get_vUp() {
 		return _vUp;
 	}
 
 	/**
-	 * Getter of _vto 0f the camera
+	 * Getter of Z axis in relation to the camera
 	 *
-	 * @return _vto
+	 * @return Z axis vector
 	 */
 	public Vector get_vTo() {
 		return _vTo;
 	}
 
 	/**
-	 * Getter of _vright 0f the camera
+	 * Getter of X axis in relation to the camera
 	 *
-	 * @return _vright
+	 * @return X axis vector
 	 */
 	public Vector get_vRight() {
 		return _vRight;
 	}
+	// ***************** Operations ******************** //
 
-// ***************** Operations ******************** //
 	/**
-	 * construct ray through pixel
-	 * 
-	 * @param nx
-	 * @param ny
-	 * @param i
-	 * @param j
-	 * @param screenDistance
-	 * @param screenWidth
-	 * @param screenHeight
-	 * @return ray from the camera through the pixel
+	 * Creates a ray though a certain pixel in the view plane
+	 *
+	 * @param nX             number of X pixels
+	 * @param nY             number of Y pixels
+	 * @param j              index of the X pixel
+	 * @param i              index of the Y pixel
+	 * @param screenDistance the distance from the camera to the view plane
+	 * @param screenWidth    view plane length (Y axis)
+	 * @param screenHeight   view plane length (X axis)
+	 * @return the ray through the pixel
 	 */
-	public Ray constructRayThroughPixel(int nx, int ny, int i, int j, double screenDistance, double screenWidth,
-			double screenHeight) {
-
-		Point3D pC = new Point3D(get_p0().addition(get_vTo().scaling(screenDistance)));
-		double rx = screenWidth / nx;
-		double ry = screenHeight / ny;
-		double xi = ((i - (double) nx / 2) * rx + (rx / 2));
-		double yj = ((j - (double) ny / 2) * ry) + (ry / 2);
+	public Ray constructRayThroughPixel(int nX, int nY, int j, int i, //
+			double screenDistance, double screenWidth, double screenHeight) {
+		Point3D pC = _p0.add(_vTo.scale(screenDistance));
+		double rX = screenWidth / nX;
+		double rY = screenHeight / nY;
+		double yi = (i - (nY / 2.0)) * rY + (rY / 2.0);
+		double xj = (j - (nX / 2.0)) * rX + (rX / 2.0);
 		Point3D pIJ = pC;
-		if (xi != 0)
-			pIJ = pIJ.addition(_vRight.scaling(xi));
-		if (yj != 0)
-			pIJ = pIJ.addition(_vUp.scaling(-yj));
+		if (xj != 0)
+			pIJ = pIJ.add(_vRight.scale(xj));
+		if (yi != 0)
+			pIJ = pIJ.add(_vUp.scale(-yi));
 		return new Ray(_p0, pIJ.sub(_p0));
-
 	}
-
 }

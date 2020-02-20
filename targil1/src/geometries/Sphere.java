@@ -1,29 +1,29 @@
 package geometries;
 
-import primitives.*;
+import java.lang.Math;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import geometries.Intersectable.GeoPoint;
+import primitives.*;
 
-import java.lang.Math;
 import static primitives.Util.*;
 
+/**
+ * Class represents a sphere in 3D
+ */
 public class Sphere extends RadialGeometry {
 	Point3D _center;
-
 	// ***************** Constructors ********************** //
 
 	/**
-	 * getting point3D and radius for initialization the Sphere
-	 * 
-	 * @param radius double number
-	 * @param center point3D center
+	 * constructs a sphere with a radius and center point
+	 *
+	 * @param _radius, the radius of the sphere
+	 * @param _center, the center point of the sphere
 	 */
 	public Sphere(double _radius, Point3D _center) {
-		super(_radius);
-		this._center = _center;
+		this(Color.BLACK, _radius, _center);
 	}
 
 	/**
@@ -34,86 +34,57 @@ public class Sphere extends RadialGeometry {
 	 * @param _center, the center point of the sphere
 	 */
 	public Sphere(Color emission, double _radius, Point3D _center) {
-		this(_radius, _center);
-		 this.emission = emission;
+		this(emission, new Material(0, 0, 1), _radius, _center);
 	}
-	/**
-     * constructs a sphere with a radius, center point and a color
-     *
-     * @param emission the color of the sphere
-     * @param material the material of the sphere
-     * @param _radius, the radius of the sphere
-     * @param _center, the center point of the sphere
-     */
-    public Sphere(Color emission, Material material, double _radius, Point3D _center) {
-        this(emission, _radius, _center);
-        this.material = material;
-    }
 
-	// ***************** Getters ********************** //
 	/**
-	 * giving the point3D center
-	 * 
-	 * @return the point
+	 * constructs a sphere with a radius, center point and a color
+	 *
+	 * @param emission the color of the sphere
+	 * @param material the material of the sphere
+	 * @param _radius, the radius of the sphere
+	 * @param _center, the center point of the sphere
 	 */
-	public Point3D getCenter() {
-		return _center;
+	public Sphere(Color emission, Material material, double _radius, Point3D _center) {
+		super(emission, material, _radius);
+		this._center = _center;
 	}
-
-	// ***************** operations ********************** //
-	@Override
-	public String toString() {
-		return "Sphere: center=" + _center + ", radius=" + _radius;
-
-	}
+	// ***************** Operations ******************** //
 
 	/**
-	 * @param point p
-	 * 
-	 * @return the normal vector to the point
+	 * Gets the normal of the sphere at a certain point
+	 *
+	 * @param p, the point of the normal on the sphere
+	 * @return the normal of the sphere at p
 	 */
 	public Vector getNormal(Point3D p) {
-		return new Vector(p.sub(_center).normalization());
+		return p.sub(_center).normalize();
 	}
 
-	/**
-	 * giving the intersection
-	 * 
-	 * @param r
-	 * @return intersections
-	 */
-	public List<GeoPoint> findIntersections(Ray r) {
-		Point3D p0 = r.getP();
-		Vector v = r.getDirection();
-		Vector u;
-		try {
-			u = _center.sub(p0); // O - P0
-		} catch (Exception e) {
-
-			return Arrays.asList(new GeoPoint(this, p0.addition(v.scaling(this._radius))));
+	@Override
+	public List<GeoPoint> findIntersections(Ray ray) {
+		List<GeoPoint> l = new ArrayList<GeoPoint>();
+		Point3D headRay = ray.getP();
+		Vector vectorRay = ray.getDirection();
+		if (headRay.equals(_center)) {
+			l.add(new GeoPoint(this, headRay.add(vectorRay.scale(_radius))));
 		}
-
-		double tm = alignZero(v.dotProduct(u)); //
-
-		double d = alignZero(Math.sqrt(u.length2() - tm * tm));
+		Vector u = new Vector(_center.sub(headRay));
+		double tm = vectorRay.dotProduct(u);
+		double s = u.length() * u.length() - tm * tm;
+		double d = Math.sqrt(s);
+		double th = alignZero(Math.sqrt(_radius * _radius - d * d));
 		if (alignZero(d - _radius) > 0)
 			return null;
-
-		double th = alignZero(Math.sqrt(_radius * _radius - d * d));
-		if (th == 0)
-			return null;
-
-		double t1 = alignZero(tm + th);
-		double t2 = alignZero(tm - th);
+		double t1 = tm + th;
+		double t2 = tm - th;
 		if (t1 > 0 || t2 > 0) {
-			List<GeoPoint> intersections = new ArrayList<>();
 			if (t1 > 0)
-				intersections.add(new GeoPoint(this, p0.addition(v.scaling(t1))));
+				l.add(new GeoPoint(this, headRay.add(vectorRay.scale(t1))));
 			if (t2 > 0)
-				intersections.add(new GeoPoint(this, p0.addition(v.scaling(t2))));
-			return intersections;
+				l.add(new GeoPoint(this, headRay.add(vectorRay.scale(t2))));
+			return l;
 		}
-
 		return null;
 	}
 }

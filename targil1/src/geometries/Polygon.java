@@ -62,9 +62,11 @@ public class Polygon extends Geometry {
         this.material = material;
     }
 
-	// ***************** operations ********************** //
+
+	// ***************** Operations ******************** //
+
 	/**
-	 * Gets the normal of the polygon to the point
+	 * Gets the normal of the polygon at a certain point
 	 *
 	 * @return the normal of the plane of the polygon
 	 */
@@ -73,39 +75,38 @@ public class Polygon extends Geometry {
 	}
 
 	/**
-	 * finds intersections of the ray with the polygon
-	 *
-	 * @param ray
-	 * @return intersection point
-	 */
-	public List<GeoPoint> findIntersections(Ray ray) {
-		List<GeoPoint> intersections = this._plane.findIntersections(ray);
-		if (intersections == null) // there are no intersections with the plane
-			return null;
+     * finds intersections of the ray with the polygon
+     *
+     * @param ray
+     * @return intersection point
+     */
+    public List<GeoPoint> findIntersections(Ray ray) {
+        List<GeoPoint> intersections = this._plane.findIntersections(ray);
+        if (intersections == null) //  there are no intersections with the plane
+                    return null;
 
-		Point3D p0 = new Point3D(ray.getP());
-		int size = this._points.size();
-		Vector[] v = new Vector[size];
-		Vector[] n = new Vector[size];
-		double[] x = new double[size];
-		for (int i = 0; i < size; ++i)
-			v[i] = _points.get(i).sub(p0);
+        Point3D p0 =ray.getP();
+        int size = this._points.size();
+        Vector[] v = new Vector[size];
+        Vector[] n = new Vector[size];
+        double[] x = new double[size];
+        for (int i = 0; i < size; ++i)
+            v[i] = _points.get(i).sub(p0);
+        
+        for (int i = 0; i < size; ++i)
+            n[i] = v[i].crossProduct(v[(i < size - 1) ? i + 1 : 0]).normalize();
 
-		for (int i = 0; i < size; ++i)
-			n[i] = v[i].crossProduct(v[(i < size - 1) ? i + 1 : 0]).normalize();
+        Vector u = intersections.get(0).getPoint().sub(p0);
+       
+        for (int i = 0; i < size; ++i)
+            if ((x[i] = alignZero(u.dotProduct(n[i]))) == 0)
+                return null;
+        double t = x[0];
+        for (int i = 1; i < size; ++i)
+           
+            if ((t < 0 && x[i] > 0) || ( t> 0 && x[i] < 0))
+                return null;
 
-		Vector u = intersections.get(0).getPoint().sub(p0);
-
-		for (int i = 0; i < size; ++i)
-			if ((x[i] = alignZero(u.dotProduct(n[i]))) == 0)
-				return null;
-		double t = x[0];
-		for (int i = 1; i < size; ++i)
-
-			if ((t < 0 && x[i] > 0) || (t > 0 && x[i] < 0))
-				return null;
-
-		return intersections;
-	}
-
+        return intersections;
+    }
 }
