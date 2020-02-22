@@ -213,38 +213,6 @@ public class LightTest {
 	render.writeToImage();
     }
 
-    @Test
-    public void shadowTest4() {
-	Scene scene = new Scene("Test scene");
-	scene.setCamera(new Camera(new Point3D(0, 0, 5000), new Vector(0, -1, 0), new Vector(0, 0, -1)));
-	scene.setDistance(5000);
-	scene.setBackground(new Color(0, 0, 10));
-	scene.setAmbient(new AmbientLight(new Color(0, 100, 0), 0.1));
-	
-	Geometries geometries = new Geometries();
-	scene.setGeometries(geometries);
-	geometries.add(new Triangle(new Color(255, 138, 22), new Material(0.6, 0.38, 72), new Point3D(-1, -1, -150),
-		new Point3D(-240, -1, -150), new Point3D(-1, -240, -150)));
-	geometries.add(new Triangle(new Color(255, 138, 22), new Material(0.6, 0.38, 72), new Point3D(1, 1, -150), new Point3D(240, 1, -150),
-		new Point3D(1, 240, -150)));
-	geometries.add(new Triangle(new Color(255, 138, 22), new Material(0.6, 0.38, 72), new Point3D(-1, 1, -150), new Point3D(-240, 1, -150),
-		new Point3D(-1, 240, -150)));
-	geometries.add(new Triangle(new Color(255, 138, 22), new Material(0.6, 0.38, 72), new Point3D(1, -1, -150), new Point3D(240, -1, -150),
-		new Point3D(1, -240, -150)));
-	geometries.add(
-		new Sphere(new Color(16, 20, 167), new Material(0.6, 0.38, 80),50, new Point3D(0, 0, -120) ));
-	geometries.add(
-		new Sphere(new Color(230, 23, 29), new Material(0.6, 0.38, 80), 40, new Point3D(-80, -80, -160)));
-
-	ArrayList<LightSource> lights = new ArrayList<LightSource>();
-	scene.setLights(lights);
-	lights.add(new DirectionalLight(new Color(255, 255, 255), new Vector(-1, -1, -1)));
-
-	ImageWriter imageWriter = new ImageWriter("shaddows on spheres", 500, 500, 500, 500);
-	Render render = new Render(imageWriter, scene);
-	render.renderImage();
-	render.writeToImage();
-    }
 }
 
 

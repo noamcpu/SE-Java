@@ -147,7 +147,7 @@ public class Render {
         if (points == null)
             return null;
         Point3D p0 = ray.getP();
-        return pointClosestTo(points, p0);
+        return closetPoint(points, p0);
     }
     /**
      * the function calculates the reflected ray from the geometry
@@ -201,7 +201,7 @@ public class Render {
      * @param p0
      * @return the closest point
      */
-    public GeoPoint pointClosestTo(List<GeoPoint> points, Point3D p0) {
+    public GeoPoint closetPoint(List<GeoPoint> points, Point3D p0) {
         double minValue = points.get(0).getPoint().distance(p0);
         GeoPoint minPoint = points.get(0);
         for (int i = 0; i < points.size(); ++i) {
@@ -214,43 +214,43 @@ public class Render {
         }
         return minPoint;
     }
-	/**
-	 * calculate diffusive effect
-	 * 
-	 * @param kd             - the diffusive's material
-	 * @param l              - vector from the light source to the object
-	 * @param n              - the normal vector to the geometry in the intersection
-	 *                       point
-	 * @param lightIntensity - the light's intensity
-	 * @return kd * dotProduct(l,n)
-	 */
-	public Color calcDiffusive(double kd, Vector l, Vector n, Color lightIntensity) {
-		double scal = kd * l.dotProduct(n);
-		if (scal < 0)
-			scal = -scal;
-		return lightIntensity.scale(scal);
-	}
+/**
+ * calculate diffusive effect
+ * 
+ * @param kd             - the diffusive's material
+ * @param l              - vector from the light source to the object
+ * @param n              - the normal vector to the geometry in the intersection
+ *                       point
+ * @param lightIntensity - the light's intensity
+ * @return kd * dotProduct(l,n)
+ */
+public Color calcDiffusive(double kd, Vector l, Vector n, Color lightIntensity) {
+	double scal = kd * l.dotProduct(n);
+	if (scal < 0)
+		scal = -scal;
+	return lightIntensity.scale(scal);
+}
 
-	/**
-	 * calculate the specular effect
-	 * 
-	 * @param ks             - the specular's material
-	 * @param l              - vector from the light source to the object
-	 * @param n              - the normal vector to the geometry in the intersection
-	 *                       point
-	 * @param v              - the vector from the camera to intersection point
-	 * @param nShininess     - the shininess' material
-	 * @param lightIntensity - the light's intensity
-	 * @return ks* dotProduct(-v,r)^nShininess.
-	 */
-	public Color calcSpecular(double ks, Vector l, Vector n, Vector v, int nShininess, Color lightIntensity) {
-		double lenght = 2 * l.dotProduct(n);
-		Vector r = l.sub(n.scale(lenght)).normalization();
-		double vr = -r.dotProduct(v);
-		if (vr <= 0)
-			return Color.BLACK;
-		return lightIntensity.scale(ks * Math.pow(vr, nShininess));
-	}
+/**
+ * calculate the specular effect
+ * 
+ * @param ks             - the specular's material
+ * @param l              - vector from the light source to the object
+ * @param n              - the normal vector to the geometry in the intersection
+ *                       point
+ * @param v              - the vector from the camera to intersection point
+ * @param nShininess     - the shininess' material
+ * @param lightIntensity - the light's intensity
+ * @return ks* dotProduct(-v,r)^nShininess.
+ */
+public Color calcSpecular(double ks, Vector l, Vector n, Vector v, int nShininess, Color lightIntensity) {
+	double lenght = 2 * l.dotProduct(n);
+	Vector r = l.sub(n.scale(lenght)).normalization();
+	double vr = -r.dotProduct(v);
+	if (vr <= 0)
+		return Color.BLACK;
+	return lightIntensity.scale(ks * Math.pow(vr, nShininess));
+}
 
 	/**
 	 * return the image
