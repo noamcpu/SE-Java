@@ -28,8 +28,8 @@ public class Scene {
 	 * @param _camera
 	 * @param _distance
 	 */
-	public Scene(String sceneName, Color background, AmbientLight ambietLight, Geometries geometries,
-			Camera camera, double distance) {
+	public Scene(String sceneName, Color background, AmbientLight ambietLight, Geometries geometries, Camera camera,
+			double distance) {
 		this._sceneName = sceneName;
 		this._background = background;
 		this._ambietLight = ambietLight;
@@ -167,35 +167,6 @@ public class Scene {
 	}
 
 	// ***************** Operations ******************** //
-
-	/**
-	 * changes the camera location and distance from view plane
-	 *
-	 * @param cam
-	 * @param dist
-	 */
-	public void updateCamera(Camera c, double d) {
-		_camera = c;
-		_distance = d;
-	}
-
-	/**
-	 * changes the background color
-	 *
-	 * @param color
-	 */
-	public void updateBackground(Color color) {
-		_background = color;
-	}
-
-	/**
-	 * changes the ambient light
-	 *
-	 * @param amb
-	 */
-	public void updateAmbient(AmbientLight amb) {
-		_ambietLight = amb;
-	}
 
 	/**
 	 * adds shapes to the 3D model

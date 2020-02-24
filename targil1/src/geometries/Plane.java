@@ -22,10 +22,10 @@ public class Plane extends Geometry {
 	 * @param n the vector
 	 * @param p the point
 	 */
-	public Plane(Vector n, Point3D v) {
+	public Plane(Vector n, Point3D p) {
 
 		_normal = n.normalize();
-		_p = v;
+		_p = p;
 	}
 
 	/**
@@ -50,7 +50,7 @@ public class Plane extends Geometry {
 	 */
 	public Plane(Color emission, Point3D p1, Point3D p2, Point3D p3) {
 		this(p1, p2, p3);
-		 this.emission = emission;
+		this.emission = emission;
 	}
 
 	/**
@@ -62,34 +62,35 @@ public class Plane extends Geometry {
 	 */
 	public Plane(Color emission, Point3D _p, Vector _normal) {
 		this(_normal, _p);
-		 this.emission = emission;
+		this.emission = emission;
 	}
-	/**
-     * Constructs a plane with a point, normal vector and a color
-     *
-     * @param emission the color of the plane
-     * @param material the material of the plane
-     * @param _p,      the base point of the normal
-     * @param _normal, the normal vector to the plane
-     */
-    public Plane(Color emission, Material material, Point3D _p, Vector _normal) {
-        this(emission, _p, _normal);
-        this.material = material;
-    }
 
-    /**
-     * Constructs a plane using three points in the space and a color
-     *
-     * @param emission the color of the plane
-     * @param material the material of the plane
-     * @param p1       is first point
-     * @param p2       is second point
-     * @param p3       is third point
-     */
-    public Plane(Color emission, Material material, Point3D p1, Point3D p2, Point3D p3) {
-        this(emission, p1, p2, p3);
-        this.material = material;
-    }
+	/**
+	 * Constructs a plane with a point, normal vector and a color
+	 *
+	 * @param emission the color of the plane
+	 * @param material the material of the plane
+	 * @param _p,      the base point of the normal
+	 * @param _normal, the normal vector to the plane
+	 */
+	public Plane(Color emission, Material material, Point3D _p, Vector _normal) {
+		this(emission, _p, _normal);
+		this.material = material;
+	}
+
+	/**
+	 * Constructs a plane using three points in the space and a color
+	 *
+	 * @param emission the color of the plane
+	 * @param material the material of the plane
+	 * @param p1       is first point
+	 * @param p2       is second point
+	 * @param p3       is third point
+	 */
+	public Plane(Color emission, Material material, Point3D p1, Point3D p2, Point3D p3) {
+		this(emission, p1, p2, p3);
+		this.material = material;
+	}
 
 	// ***************** Getters/Setters ********************** //
 
@@ -125,7 +126,7 @@ public class Plane extends Geometry {
 	@Override
 	public List<GeoPoint> findIntersections(Ray ray) {
 		Vector v = ray.getDirection();
-		double d =v.dotProduct(this._normal);
+		double d = v.dotProduct(this._normal);
 		if (d == 0)
 			return null;
 		Point3D p0 = ray.getP();
@@ -135,7 +136,7 @@ public class Plane extends Geometry {
 		} catch (Exception e) {
 			return null;
 		}
-		double t =u.dotProduct(this._normal) /d;
+		double t = u.dotProduct(this._normal) / d;
 		if (t <= 0)
 			return null;
 

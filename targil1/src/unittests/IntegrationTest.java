@@ -26,7 +26,6 @@ public class IntegrationTest {
 	 * @return number of intersections
 	 */
 	private int countIntersections(Intersectable shape) {
-		// a view plane with length and width of 3 pixels
 		int p = 0;
 		for (int i = 0; i < 3; i++) {
 			for (int j = 0; j < 3; j++) {
@@ -90,11 +89,13 @@ public class IntegrationTest {
 	@Test
 	public void TriangleIntegrationTest() {
 		// triangle first test case - 1 intersection point
-		Triangle triangle = new Triangle(new Point3D(0, -1, -2), new Point3D(-1, 1, -2), new Point3D(1, 1, -2));
+		Triangle triangle = new Triangle(new Material(0, 0, 0), new Color(0, 0, 0), new Point3D(0, -1, -2),
+				new Point3D(-1, 1, -2), new Point3D(1, 1, -2));
 		assertEquals(1, countIntersections(triangle), 0);
 
 		// triangle second test case - 2 intersection points
-		triangle = new Triangle(new Point3D(0, -20, -2), new Point3D(-1, 1, -2), new Point3D(1, 1, -2));
+		triangle = new Triangle(new Material(0, 0, 0), new Color(0, 0, 0), new Point3D(0, -20, -2),
+				new Point3D(-1, 1, -2), new Point3D(1, 1, -2));
 		assertEquals(2, countIntersections(triangle), 0);
 	}
 

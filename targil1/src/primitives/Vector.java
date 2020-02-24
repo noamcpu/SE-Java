@@ -31,7 +31,7 @@ public class Vector {
 	 */
 	public Vector(double x, double y, double z) {
 		this.head = new Point3D(x, y, z);
-		if (this.head.equals(Point3D.ZERO))
+		if (head.equals(Point3D.ZERO))
 			throw new IllegalArgumentException("Zero Vector");
 	}
 

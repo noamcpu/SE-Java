@@ -15,28 +15,31 @@ public class VectorTest {
 	 * check function add
 	 */
 	@Test
-	 public void testAdd() {
+	public void testAdd() {
 		Vector vec1 = new Vector(1, 2, 3);
 		Vector vec2 = new Vector(3, 2, 1);
 		assertEquals(new Vector(4, 4, 4), vec1.add(vec2));
 	}
+
 	/**
 	 * check function sub
 	 */
 	@Test
-	 public void testSubtract() {
+	public void testSubtract() {
 		Vector vec1 = new Vector(1, 2, 3);
 		Vector vec2 = new Vector(3, 2, 1);
 		assertEquals(new Vector(-2, 0, 2), vec1.sub(vec2));
 	}
+
 	/**
 	 * check function scale
 	 */
 	@Test
-	 public void testScailing() {
+	public void testScailing() {
 		Vector vec1 = new Vector(1, 2, 3);
 		assertEquals(new Vector(2, 4, 6), vec1.scale(2));
 	}
+
 	/**
 	 * check function dot product
 	 */
@@ -60,11 +63,12 @@ public class VectorTest {
 	 * check function cross product
 	 */
 	@Test
-	 public void testCrossProduct() {
+	public void testCrossProduct() {
 		Vector vec1 = new Vector(0, 0, 1);
 		Vector vec2 = new Vector(0, 1, 0);
 		assertEquals(new Vector(-1, 0, 0), vec1.crossProduct(vec2));
 	}
+
 	/**
 	 * check function length
 	 */
@@ -79,10 +83,10 @@ public class VectorTest {
 	 */
 
 	@Test
-	 public void testNormalize() {
+	public void testNormalize() {
 		Vector vec1 = new Vector(1, 1, 1);
 		assertEquals(new Vector(Math.sqrt(1.0 / 3), Math.sqrt(1.0 / 3), Math.sqrt(1.0 / 3)), vec1.normalization());
-				
+
 	}
 
 }

@@ -13,12 +13,12 @@ import java.util.List;
 import static geometries.Intersectable.GeoPoint;
 
 /**
- * Test class of Polygon {@link geometries.Plane}}
+ * Test class of plane
  */
 public class PlaneTest {
 
 	/**
-	 * test Method for {@link geometries.Plane#getNormal (geomtries.Plane)}
+	 * test Method for get-normal of plane
 	 */
 	@Test
 	public void testGetNormal() {

@@ -13,21 +13,29 @@ import java.util.List;
 import static geometries.Intersectable.GeoPoint;
 
 /**
- * Test class of Triangle 
+ * Test class of Triangle
  */
 public class TriangleTest {
 	static Point3D p1 = new Point3D(0, 0, 0);
 	static Point3D p2 = new Point3D(0, 3, 0);
 	static Point3D p3 = new Point3D(4, 0, 0);
-	static Triangle triangle = new Triangle(p1, p2, p3);
+	static Triangle triangle = new Triangle(new Material(0, 0, 0), new Color(0, 0, 0), p1, p2, p3);
+
+	@Test
+	public void testGetNormal() {
+		Vector normal = new Vector(0, 0, -1);
+		Point3D p = new Point3D(1, 1, 0);
+		assertEquals("Get normal function error", triangle.getNormal(p), normal);
+	}
 
 	/**
-	 * test Method for findintersections of triangle
+	 * test Method for find-intersections of triangle
 	 */
 	@Test
-	 public void testFindIntersections() {
+	public void testFindIntersections() {
 		ArrayList<GeoPoint> list = new ArrayList<GeoPoint>();
-		Triangle tri = new Triangle(new Point3D(2, 0, 0), new Point3D(0, 0, 2), new Point3D(-1, 0, 0));
+		Triangle tri = new Triangle(new Material(0, 0, 0), new Color(0, 0, 0), new Point3D(2, 0, 0),
+				new Point3D(0, 0, 2), new Point3D(-1, 0, 0));
 
 		// the point is inside the Triangle
 		Ray ray = new Ray(new Point3D(0, -1, 0), new Vector(0, 1, 1));

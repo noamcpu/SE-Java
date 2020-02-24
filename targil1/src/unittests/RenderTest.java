@@ -22,16 +22,16 @@ public class RenderTest {
 		scene.setGeometries(geometries);
 		geometries.add(new Sphere(new Color(128, 128, 128), new Material(0, 0, 0), 50, new Point3D(0, 0, 150)));
 
-		geometries.add(new Triangle(new Color(255, 0, 0), new Material(0, 0, 0), new Point3D(100, 0, 149),
+		geometries.add(new Triangle(new Material(0, 0, 0), new Color(255, 0, 0), new Point3D(100, 0, 149),
 				new Point3D(0, 100, 149), new Point3D(100, 100, 149)));
 
-		geometries.add(new Triangle(new Color(100, 100, 100), new Material(0, 0, 0), new Point3D(100, 0, 149),
+		geometries.add(new Triangle(new Material(0, 0, 0), new Color(100, 100, 100), new Point3D(100, 0, 149),
 				new Point3D(0, -100, 149), new Point3D(100, -100, 149)));
 
-		geometries.add(new Triangle(new Color(100, 100, 100), new Material(0, 0, 0), new Point3D(-100, 0, 149),
+		geometries.add(new Triangle(new Material(0, 0, 0), new Color(100, 100, 100), new Point3D(-100, 0, 149),
 				new Point3D(0, 100, 149), new Point3D(-100, 100, 149)));
 
-		geometries.add(new Triangle(new Color(100, 100, 100), new Material(0, 0, 0), new Point3D(-100, 0, 149),
+		geometries.add(new Triangle(new Material(0, 0, 0), new Color(100, 100, 100), new Point3D(-100, 0, 149),
 				new Point3D(0, -100, 149), new Point3D(-100, -100, 149)));
 
 		ImageWriter imageWriter = new ImageWriter("test0", 500, 500, 500, 500);
@@ -53,16 +53,16 @@ public class RenderTest {
 		scene.setGeometries(geometries);
 		geometries.add(new Sphere(new Color(java.awt.Color.gray), new Material(0, 0, 0), 50, new Point3D(0, 0, 150)));
 
-		geometries.add(new Triangle(new Color(java.awt.Color.blue), new Material(0, 0, 0), new Point3D(100, 0, 149),
+		geometries.add(new Triangle(new Material(0, 0, 0), new Color(java.awt.Color.blue), new Point3D(100, 0, 149),
 				new Point3D(0, 100, 149), new Point3D(100, 100, 149)));
 
-		geometries.add(new Triangle(new Color(java.awt.Color.red), new Material(0, 0, 0), new Point3D(100, 0, 149),
+		geometries.add(new Triangle(new Material(0, 0, 0), new Color(java.awt.Color.red), new Point3D(100, 0, 149),
 				new Point3D(0, -100, 149), new Point3D(100, -100, 149)));
 
-		geometries.add(new Triangle(new Color(java.awt.Color.yellow), new Material(0, 0, 0), new Point3D(-100, 0, 149),
+		geometries.add(new Triangle(new Material(0, 0, 0), new Color(java.awt.Color.yellow), new Point3D(-100, 0, 149),
 				new Point3D(0, 100, 149), new Point3D(-100, 100, 149)));
 
-		geometries.add(new Triangle(new Color(java.awt.Color.green), new Material(0, 0, 0), new Point3D(-100, 0, 149),
+		geometries.add(new Triangle(new Material(0, 0, 0), new Color(java.awt.Color.green), new Point3D(-100, 0, 149),
 				new Point3D(0, -100, 149), new Point3D(-100, -100, 149)));
 
 		ImageWriter imageWriter = new ImageWriter("test1", 500, 500, 500, 500);
@@ -71,5 +71,40 @@ public class RenderTest {
 		render.renderImage();
 		render.printGrid(50, new Color(java.awt.Color.red));
 		render.writeToImage();
+	}
+
+	public void beforesupersampling() {
+		Scene scene = new Scene("Test scene");
+		scene.setCamera(new Camera(new Point3D(0, 0, 0), new Vector(0, -1, 0), new Vector(0, 0, 1)));
+		scene.setDistance(150);
+		scene.setAmbient(new AmbientLight(new Color(java.awt.Color.white), 0));
+		scene.setBackground(new Color(0, 0, 0));
+		Geometries geometries = new Geometries();
+		scene.setGeometries(geometries);
+		geometries.add(new Sphere(new Color(java.awt.Color.GRAY), new Material(0, 0, 0), 50, new Point3D(0, 0, 150)));
+		ImageWriter imageWriter = new ImageWriter("beforesupersampling", 500, 500, 300, 300);
+		Render render = new Render(imageWriter, scene);
+		render.renderImage();
+		render.writeToImage();
+	}
+
+	@Test
+	public void SuperSampling() {
+		beforesupersampling();
+		Scene scene = new Scene("Test scene");
+		scene.setCamera(new Camera(new Point3D(0, 0, 0), new Vector(0, -1, 0), new Vector(0, 0, 1)));
+		scene.setDistance(150);
+		scene.setAmbient(new AmbientLight(new Color(java.awt.Color.white), 0));
+		scene.setBackground(new Color(0, 0, 0));
+		Geometries geometries = new Geometries();
+		scene.setGeometries(geometries);
+		geometries.add(new Sphere(new Color(java.awt.Color.gray), new Material(0, 0, 0), 50, new Point3D(0, 0, 150)));
+
+		ImageWriter imageWriter = new ImageWriter("after supersampling", 500, 500, 300, 300);
+		Render render = new Render(imageWriter, scene);
+
+		render.renderImageSuperSampling();
+		render.writeToImage();
+
 	}
 }

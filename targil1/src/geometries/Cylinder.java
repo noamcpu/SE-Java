@@ -11,9 +11,9 @@ public class Cylinder extends Tube {
 	/**
 	 * Constructs a cylinder with radius, height and axis ray
 	 *
-	 * @param double _radius, radius of the cylinder
-	 * @param double _height, height of the cylinder
-	 * @param Ray    _axis, axis of the cylinder
+	 * @param double _radius
+	 * @param double _height
+	 * @param Ray    _axis
 	 * @throws new IllegalException when radius is smaller than zero
 	 */
 	public Cylinder(double _radius, double _height, Ray _axis) {
@@ -26,12 +26,12 @@ public class Cylinder extends Tube {
 	}
 
 	// ***************** Operations ******************** //
-/**
- * getting Point3D and giving the normal Vector in this point
- * 
- * @param point the Point3D
- * @return the normal Vector
- */
+	/**
+	 * getting Point3D and giving the normal Vector in this point
+	 * 
+	 * @param point the Point3D
+	 * @return the normal Vector
+	 */
 	@Override
 	public Vector getNormal(Point3D p) {
 		Vector v = _axisRay.getDirection();
@@ -39,11 +39,10 @@ public class Cylinder extends Tube {
 		if (p.equals(p0))
 			return v;
 		Vector u = p.sub(p0);
-		double t = v.dotProduct(u); 
+		double t = v.dotProduct(u);
 		if (isZero(t) || isZero(t - this._height)) {
 			return v;
 		}
 		return p.sub(p0.add(v.scale(t))).normalization();
 	}
 }
-

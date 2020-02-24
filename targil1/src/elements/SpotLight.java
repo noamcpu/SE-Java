@@ -33,4 +33,3 @@ public class SpotLight extends PointLight implements LightSource {
 			return super.getIntensity(p).scale(dl);
 	}
 }
-

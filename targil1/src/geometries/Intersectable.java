@@ -39,21 +39,21 @@ public interface Intersectable {
 		public Geometry getGeometry() {
 			return geometry;
 		}
-	
-	@Override
-	public  boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (!(obj instanceof GeoPoint))
-			return false;
 
-		GeoPoint other = (GeoPoint) obj;
+		@Override
+		public boolean equals(Object obj) {
+			if (this == obj)
+				return true;
+			if (obj == null)
+				return false;
+			if (!(obj instanceof GeoPoint))
+				return false;
 
-		return point.equals(other.point);
+			GeoPoint other = (GeoPoint) obj;
+
+			return point.equals(other.point);
+		}
 	}
-}
 
 	/**
 	 * Find the intersections with the geometry
@@ -61,6 +61,6 @@ public interface Intersectable {
 	 * @param r
 	 * @return list of intersections points
 	 */
-public	List<GeoPoint> findIntersections(Ray r);
+	public List<GeoPoint> findIntersections(Ray r);
 
 }

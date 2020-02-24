@@ -12,11 +12,11 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * Test class of Sphere {@link geometries.Sphere}
+ * Test class of Sphere 
  */
 public class SphereTest {
 	/**
-	 * test Method for {@link geometries.Sphere#getNormal (geomtries.Sphere)}
+	 * test Method for sphere
 	 */
 	@Test
 	public void testGetNormal() {
@@ -49,8 +49,8 @@ public class SphereTest {
 		Point3D p1 = (r.getP().add(r.getDirection().scale(Tm + Th)));
 		Point3D p2 = (r.getP().add(r.getDirection().scale(Tm - Th)));
 
-		l.add(new GeoPoint(s,p1)); 
-		l.add(new GeoPoint(s,p2)); 
+		l.add(new GeoPoint(s, p1));
+		l.add(new GeoPoint(s, p2));
 
 		assertEquals(l, s.findIntersections(r));
 
@@ -62,7 +62,7 @@ public class SphereTest {
 		D = Math.pow(u1.length(), 2) - Math.pow(Tm, 2);
 		d = Math.sqrt(D);
 		Th = Math.sqrt(Math.pow(5, 2) - Math.pow(d, 2));
-		l1.add(new GeoPoint (s,r1.getP().add(r1.getDirection().scale(Tm + Th))));
+		l1.add(new GeoPoint(s, r1.getP().add(r1.getDirection().scale(Tm + Th))));
 		assertEquals(l1, s.findIntersections(r1));
 
 		// test4 the line have two intersection points
@@ -83,7 +83,7 @@ public class SphereTest {
 		D = Math.pow(u2.length(), 2) - Math.pow(Tm, 2);
 		d = Math.sqrt(D);
 		Th = Math.sqrt(Math.pow(5, 2) - Math.pow(d, 2));
-		l4.add(new GeoPoint (s,r4.getP().add(r4.getDirection().scale(Tm + Th))));
+		l4.add(new GeoPoint(s, r4.getP().add(r4.getDirection().scale(Tm + Th))));
 		assertEquals(l4, s.findIntersections(r4));
 
 		// test7 P0 is outside and there is no intersection.
@@ -99,11 +99,11 @@ public class SphereTest {
 		D = Math.pow(u3.length(), 2) - Math.pow(Tm, 2);
 		d = Math.sqrt(D);
 		Th = Math.sqrt(Math.pow(5, 2) - Math.pow(d, 2));
-		p1 =(r6.getP().add(r6.getDirection().scale(Tm + Th)));
-		p2 =(r6.getP().add(r6.getDirection().scale(Tm - Th)));
+		p1 = (r6.getP().add(r6.getDirection().scale(Tm + Th)));
+		p2 = (r6.getP().add(r6.getDirection().scale(Tm - Th)));
 
-		l6.add(new GeoPoint (s,p1));
-		l6.add(new GeoPoint (s,p2));
+		l6.add(new GeoPoint(s, p1));
+		l6.add(new GeoPoint(s, p2));
 
 		assertEquals(l6, s.findIntersections(r6));
 
@@ -116,11 +116,11 @@ public class SphereTest {
 		D = Math.pow(u4.length(), 2) - Math.pow(Tm, 2);
 		d = Math.sqrt(D);
 		Th = Math.sqrt(Math.pow(5, 2) - Math.pow(d, 2));
-		p1 =(r7.getP().add(r7.getDirection().scale(Tm + Th)));
-		p2 =(r7.getP().add(r7.getDirection().scale(Tm - Th)));
+		p1 = (r7.getP().add(r7.getDirection().scale(Tm + Th)));
+		p2 = (r7.getP().add(r7.getDirection().scale(Tm - Th)));
 
-		l7.add(new GeoPoint (s,p1));
-		l7.add(new GeoPoint (s,p2));
+		l7.add(new GeoPoint(s, p1));
+		l7.add(new GeoPoint(s, p2));
 
 		assertEquals(l7, s.findIntersections(r7));
 
@@ -132,7 +132,7 @@ public class SphereTest {
 		D = Math.pow(u5.length(), 2) - Math.pow(Tm, 2);
 		d = Math.sqrt(D);
 		Th = Math.sqrt(Math.pow(5, 2) - Math.pow(d, 2));
-		l8.add(new GeoPoint (s,r8.getP().add(r8.getDirection().scale(Tm + Th))));
+		l8.add(new GeoPoint(s, r8.getP().add(r8.getDirection().scale(Tm + Th))));
 		assertEquals(l8, s.findIntersections(r8));
 
 		// test11 the ray is from the sphere to the other side of the sphere
@@ -143,7 +143,7 @@ public class SphereTest {
 		D = Math.pow(u6.length(), 2) - Math.pow(Tm, 2);
 		d = Math.sqrt(D);
 		Th = Math.sqrt(Math.pow(5, 2) - Math.pow(d, 2));
-		l9.add(new GeoPoint (s,r9.getP().add(r9.getDirection().scale(Tm + Th))));
+		l9.add(new GeoPoint(s, r9.getP().add(r9.getDirection().scale(Tm + Th))));
 		assertEquals(l9, s.findIntersections(r9));
 
 		// test12 ray is from the sphere
@@ -154,7 +154,7 @@ public class SphereTest {
 		D = Math.pow(u7.length(), 2) - Math.pow(Tm, 2);
 		d = Math.sqrt(D);
 		Th = Math.sqrt(Math.pow(5, 2) - Math.pow(d, 2));
-		l10.add(new GeoPoint (s,r10.getP().add(r10.getDirection().scale(Tm - Th))));
+		l10.add(new GeoPoint(s, r10.getP().add(r10.getDirection().scale(Tm - Th))));
 		assertEquals(null, s.findIntersections(r10));
 
 		// test13 ray is tangent to the sphere
@@ -165,7 +165,7 @@ public class SphereTest {
 		D = Math.pow(u8.length(), 2) - Math.pow(Tm, 2);
 		d = Math.sqrt(D);
 		Th = Math.sqrt(Math.pow(5, 2) - Math.pow(d, 2));
-		l11.add(new GeoPoint (s,r11.getP().add(r11.getDirection().scale(Tm - Th))));
+		l11.add(new GeoPoint(s, r11.getP().add(r11.getDirection().scale(Tm - Th))));
 		assertEquals(null, s.findIntersections(r11));
 
 		// test14 ray is from the tangent to the sphere
@@ -176,7 +176,7 @@ public class SphereTest {
 		D = Math.pow(u9.length(), 2) - Math.pow(Tm, 2);
 		d = Math.sqrt(D);
 		Th = Math.sqrt(Math.pow(5, 2) - Math.pow(d, 2));
-		l12.add(new GeoPoint (s,r12.getP().add(r12.getDirection().scale(Tm + Th))));
+		l12.add(new GeoPoint(s, r12.getP().add(r12.getDirection().scale(Tm + Th))));
 		assertEquals(null, s.findIntersections(r12));
 
 		// test15 ray is on the tangent line of the sphere
@@ -187,7 +187,7 @@ public class SphereTest {
 		D = Math.pow(u10.length(), 2) - Math.pow(Tm, 2);
 		d = Math.sqrt(D);
 		Th = Math.sqrt(Math.pow(5, 2) - Math.pow(d, 2));
-		l13.add(new GeoPoint (s,r13.getP().add(r13.getDirection().scale(Tm + Th))));
+		l13.add(new GeoPoint(s, r13.getP().add(r13.getDirection().scale(Tm + Th))));
 		assertEquals(null, s.findIntersections(r13));
 
 		// test16 ray is orthogonal to the radius but from outside the sphere
@@ -198,7 +198,7 @@ public class SphereTest {
 		D = Math.pow(u11.length(), 2) - Math.pow(Tm, 2);
 		d = Math.sqrt(D);
 		Th = Math.sqrt(Math.pow(5, 2) - Math.pow(d, 2));
-		l14.add(new GeoPoint (s,r14.getP().add(r14.getDirection().scale(Tm + Th))));
+		l14.add(new GeoPoint(s, r14.getP().add(r14.getDirection().scale(Tm + Th))));
 		assertEquals(null, s.findIntersections(r14));
 
 	}

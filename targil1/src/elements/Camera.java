@@ -23,8 +23,8 @@ public class Camera {
 	 */
 	public Camera(Point3D p0, Vector vUp, Vector vTo) {
 		_p0 = p0;
-		_vUp = vUp.normalization();
-		_vTo = vTo.normalization();
+		_vUp = vUp.normalize();
+		_vTo = vTo.normalize();
 		_vRight = vTo.crossProduct(vUp).normalization();
 	}
 
@@ -79,7 +79,7 @@ public class Camera {
 	 * @param screenHeight   view plane length (X axis)
 	 * @return the ray through the pixel
 	 */
-	public Ray constructRayThroughPixel(int nX, int nY, int j, int i, //
+	public Ray constructRayThroughPixel(int nX, int nY, double j, double i, //
 			double screenDistance, double screenWidth, double screenHeight) {
 		Point3D pC = _p0.add(_vTo.scale(screenDistance));
 		double rX = screenWidth / nX;
